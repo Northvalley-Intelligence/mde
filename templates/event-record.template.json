@@ -1,0 +1,16 @@
+{
+  "event_id": "EVT-YYYY-MM-DD-001",
+  "timestamp": "YYYY-MM-DDTHH:MM:SS-04:00",
+  "project": "project-id",
+  "event_type": "generation_completed",
+  "generation": "GEN-000",
+  "summary": "",
+  "why_it_matters": "",
+  "changed_artifacts": [],
+  "upstream": [],
+  "downstream_impacts": [],
+  "reusable_learning": [],
+  "content_seed_ids": [],
+  "confidentiality": "private"
+}
+

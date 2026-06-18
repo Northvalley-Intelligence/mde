@@ -1,0 +1,14 @@
+{
+  "project_id": "",
+  "project_name": "",
+  "mde_status": "active | partial | migrated | not_started",
+  "artifact_profiles": [],
+  "context_packs": [],
+  "validation_strategy_status": "missing | draft | active | needs_update",
+  "latest_generation": "",
+  "latest_validation_gate_result": "unknown | pass | fail",
+  "upstream_dependencies": [],
+  "downstream_dependencies": [],
+  "last_sync_note": ""
+}
+

@@ -1,0 +1,11 @@
+{
+  "project_id": "northvalley-client-success",
+  "project_name": "North Valley Client Success",
+  "mde_status": "planned",
+  "artifact_profiles": ["crm", "client_success", "support_workflow", "private_client_data", "client_facing_workflow"],
+  "context_packs": ["client-success-crm"],
+  "upstream_dependencies": ["client-website-repos", "mde"],
+  "downstream_dependencies": ["future-support-missions", "future-software-missions"],
+  "confidentiality": "private"
+}
+

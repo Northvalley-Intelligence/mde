@@ -1,0 +1,11 @@
+{
+  "issue_signature": "ISSUE_SIGNATURE",
+  "category": "Functional | Technical | Usability | UI Standards | Mission Coverage",
+  "severity_default": "Critical | High | Medium | Low",
+  "applies_to_artifact_profiles": [],
+  "summary": "",
+  "prevention": "",
+  "context_pack": "context-packs/example.md",
+  "validator_candidate": "validators/example.md"
+}
+

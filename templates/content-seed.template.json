@@ -1,0 +1,14 @@
+{
+  "content_id": "CONTENT-YYYY-MM-DD-001",
+  "timestamp": "YYYY-MM-DDTHH:MM:SS-04:00",
+  "source_project": "project-id",
+  "source_event": "EVT-YYYY-MM-DD-001",
+  "theme": "",
+  "working_title": "",
+  "core_insight": "",
+  "possible_outline": [],
+  "public_safe": false,
+  "redaction_notes": "",
+  "status": "seeded"
+}
+

@@ -1,0 +1,15 @@
+{
+  "lesson_id": "LESSON-YYYY-MM-DD-001",
+  "timestamp": "YYYY-MM-DDTHH:MM:SS-04:00",
+  "source_project": "project-id",
+  "source_event": "EVT-YYYY-MM-DD-001",
+  "lesson_type": "reusable_pattern",
+  "summary": "",
+  "problem": "",
+  "mde_implication": "",
+  "recommended_destination": "",
+  "promotion_status": "candidate",
+  "content_potential": false,
+  "confidentiality": "private"
+}
+

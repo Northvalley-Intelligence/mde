@@ -1,0 +1,19 @@
+# Local/private MDE state and ledgers
+.mde/
+ledger/
+portfolio/
+migration/
+
+# Private handoff notes and local working drafts
+briefings/chatgpt-handoff.md
+briefings/current-platform-brief.md
+book-proposals/
+jacob-family.md
+Untitled-1
+mde
+
+# Generated and local system files
+.DS_Store
+*.aux
+*.log
+*.out

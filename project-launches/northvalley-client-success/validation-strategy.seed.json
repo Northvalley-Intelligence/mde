@@ -1,0 +1,39 @@
+{
+  "strategy_id": "VALSTRAT-northvalley-client-success-001",
+  "project_type": "client success internal tool",
+  "artifact_profiles": ["crm", "client_success", "support_workflow", "private_client_data"],
+  "mission_phase": "Generation 0",
+  "selected_validations": [
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": ["BDD", "workflow lifecycle scenarios"],
+      "reason": "Client support and software requests must move through a clear lifecycle."
+    },
+    {
+      "category": "Technical",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": ["data integrity checks"],
+      "reason": "Client/project/support records must remain linked and auditable."
+    },
+    {
+      "category": "Usability",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": ["support workflow review"],
+      "reason": "Ferosh must quickly find client context and next actions."
+    }
+  ],
+  "external_validators": [],
+  "mde_native_validators": ["confidentiality review", "request lifecycle review"],
+  "skipped_validations": [],
+  "expensive_validations": [],
+  "second_run_policy": {
+    "description": "Two independent Validation Gate passes are required for phase exit, with risk-based rerun.",
+    "rerun_required": ["all critical validations", "failed validations", "changed workflow validations"],
+    "may_skip_with_reason": ["unaffected checks"]
+  }
+}
+

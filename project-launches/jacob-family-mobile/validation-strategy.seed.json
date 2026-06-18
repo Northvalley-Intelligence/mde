@@ -1,0 +1,39 @@
+{
+  "strategy_id": "VALSTRAT-jacob-family-mobile-001",
+  "project_type": "mobile companion app",
+  "artifact_profiles": ["mobile_app", "personalized_software", "notification_workflow", "offline_workflow"],
+  "mission_phase": "Generation 0",
+  "selected_validations": [
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": ["BDD", "mobile workflow scenarios"],
+      "reason": "Mobile workflows must preserve family app behavior, role boundaries, and persistence."
+    },
+    {
+      "category": "Technical",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": ["API contract checks", "auth/session checks"],
+      "reason": "The mobile app depends on explicit contracts with the web app."
+    },
+    {
+      "category": "Usability",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": ["mobile usability scenarios"],
+      "reason": "Small-screen workflows and notifications must be usable for family members."
+    }
+  ],
+  "external_validators": ["mobile platform accessibility tools to be selected during implementation"],
+  "mde_native_validators": ["family privacy review", "notification behavior review", "offline behavior review"],
+  "skipped_validations": [],
+  "expensive_validations": [],
+  "second_run_policy": {
+    "description": "Two independent Validation Gate passes are required for phase exit, with risk-based rerun.",
+    "rerun_required": ["all critical validations", "failed validations", "changed contract validations"],
+    "may_skip_with_reason": ["unaffected checks"]
+  }
+}
+

@@ -1,0 +1,26 @@
+# Mission Updates
+
+## 2026-06-12
+
+- Bootstrapped portfolio memory for connected projects.
+- Added incremental migration discipline: record first, standardize second, automate third.
+- Added cross-repo dependency and workflow tracking.
+- Added existing Codex session bridge prompts and runbooks.
+- Added learning triage for reusable patterns, validators, skill update candidates, and content seeds.
+- Added Codex and ChatGPT handoff artifacts.
+- Added session routing for central MDE work, existing-MDE sessions, non-MDE sessions, brand-new projects, and project outbox imports.
+- Added existing-MDE open-session sync so already-MDE projects are not re-adopted or restarted.
+- Added just-in-time reusable learning through context packs, issue signatures, and validator candidates.
+- Added Generation 0 project-specific Validation Strategy discipline.
+- Recorded that Quality Gate is deprecated as standalone terminology; phase exit uses two independent Validation Gate passes.
+
+## 2026-06-14
+
+- Consolidated MDE Platform OS setup for separate repos and Codex windows.
+- Added planned launch packs for `client-website-build-brief-generator`, `northvalley-client-success`, and `jacob-family-mobile`.
+- Added starter packs and context packs for client website builds, client success CRM, personalized family software, mobile companion apps, and assessment-to-build workflows.
+- Added skill-driven client website bootstrap prompt and runbook.
+- Added regular MDE learning audit prompt, runbook, and optional helper scripts.
+- Added project outbox contract for local-to-central sync.
+- Added `skill-packages/mde-skill-next` for future promotion into `codex-skills`.
+- Added central issue signature seeds and expanded content/skill candidate ledgers.

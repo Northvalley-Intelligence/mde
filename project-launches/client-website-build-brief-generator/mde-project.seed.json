@@ -1,0 +1,11 @@
+{
+  "project_id": "client-website-build-brief-generator",
+  "project_name": "Client Website Build Brief Generator",
+  "mde_status": "planned",
+  "artifact_profiles": ["website_assessment", "client_website", "prompt_generation", "client_facing_document", "validation_strategy"],
+  "context_packs": ["client-website-build", "website-assessment-to-build"],
+  "upstream_dependencies": ["demand-data-generation", "local-website-growth-assessment", "mde"],
+  "downstream_dependencies": ["future-client-website-repos"],
+  "confidentiality": "private"
+}
+

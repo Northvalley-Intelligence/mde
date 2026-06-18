@@ -1,0 +1,264 @@
+{
+  "strategy_id": "VALSTRAT-client-website-build-brief-generator-002",
+  "version": 2,
+  "status": "seeded_for_generation_0",
+  "project_type": "content and prompt generation system",
+  "artifact_profiles": [
+    "website_assessment",
+    "client_website",
+    "prompt_generation",
+    "client_facing_document",
+    "validation_strategy"
+  ],
+  "mission_phase": "Generation 0",
+  "context_packs_required": [
+    "client-website-build",
+    "website-assessment-to-build"
+  ],
+  "selected_validations": [
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "BDD",
+        "sample assessment fixture",
+        "generated launch pack review"
+      ],
+      "reason": "The generator must produce a repo-ready client website launch pack, not just a loose prose prompt.",
+      "required_evidence": [
+        "generated codex-build.prompt.md",
+        "generated website build mission",
+        "generated client intake summary",
+        "generated content-needed checklist",
+        "generated technical brief",
+        "generated validation plan",
+        "generated deployment checklist"
+      ]
+    },
+    {
+      "category": "Mission Coverage",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "input/output traceability review",
+        "assessment evidence coverage matrix"
+      ],
+      "reason": "Outputs must cover assessment evidence, client needs, content gaps, SEO/AEO strategy, technical constraints, and validation strategy.",
+      "required_evidence": [
+        "every major recommendation traces to assessment evidence, client intake, or documented assumption",
+        "missing or stale assessment data is called out",
+        "missing client details are listed instead of invented"
+      ]
+    },
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "SEO/AEO launch pack checklist",
+        "service-area page map review"
+      ],
+      "reason": "Client website prompts must produce local service websites focused on services, service areas, discoverability, and conversion.",
+      "required_evidence": [
+        "homepage requirements include services, service area, trust proof, and CTA",
+        "core service page requirements are present",
+        "priority service-area page requirements are present",
+        "FAQ/AEO requirements are present",
+        "LocalBusiness or service schema guidance is present when applicable",
+        "sitemap and crawlability requirements are present"
+      ]
+    },
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": [
+        "common assessment failure-mode review"
+      ],
+      "reason": "Generated prompts must avoid repeating known assessment/report failure modes.",
+      "required_evidence": [
+        "does not claim missing service-area pages without evidence or verification",
+        "does not claim broken links or images without URLs or verification",
+        "does not create thin doorway service-area pages",
+        "does not invent reviews, licenses, credentials, service guarantees, locations, or project proof",
+        "does not bury contact actions below decorative content"
+      ]
+    },
+    {
+      "category": "Technical",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "technical brief review",
+        "generated prompt static checklist"
+      ],
+      "reason": "Generated prompts must enforce the current Northvalley client website technical baseline.",
+      "required_evidence": [
+        "repo target is https://github.com/Northvalley-Intelligence",
+        "default branch is main",
+        "Next.js with TypeScript and React baseline is specified",
+        "npm and package-lock.json are specified",
+        "Node 22 CI baseline is specified",
+        "@opennextjs/cloudflare is specified",
+        "wrangler deployment is specified",
+        "open-next.config.ts and wrangler.jsonc are required",
+        "ESLint, typecheck, Vitest, Playwright, and npm audit checks are required"
+      ]
+    },
+    {
+      "category": "Technical",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "deployment checklist review",
+        "branch governance checklist"
+      ],
+      "reason": "Generated prompts must prevent accidental production drift between repo state and deployed site.",
+      "required_evidence": [
+        "production deploy source is main unless prod is explicitly defined",
+        "if prod exists, main/prod sync check is included",
+        "generated prompt says not to deploy when origin/main and origin/prod diverge unless explicitly approved",
+        "deployed commit SHA must be recorded",
+        "Cloudflare Worker name and production domain must be recorded",
+        "required GitHub secrets and Cloudflare permissions are listed"
+      ]
+    },
+    {
+      "category": "Usability",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": [
+        "missing-info review",
+        "Ferosh handoff review"
+      ],
+      "reason": "The generated launch pack must clearly tell Ferosh what is ready, what is missing, and what to paste/run in the new client repo.",
+      "required_evidence": [
+        "client questions are grouped and actionable",
+        "content-needed checklist separates launch-blocking from post-launch items",
+        "codex-build.prompt.md can be run in a brand-new repo without requiring private central MDE files",
+        "technical assumptions are explicit"
+      ]
+    },
+    {
+      "category": "UI Standards",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": [
+        "generated site prompt review"
+      ],
+      "reason": "The generated client website prompt must require visible, usable conversion paths and avoid fake or misleading actions.",
+      "required_evidence": [
+        "phone/contact/estimate CTA requirements are visible on desktop and mobile",
+        "contact form success/failure behavior is specified",
+        "click-to-call tel links are required when a phone number exists",
+        "navigation includes clear service, service-area, and contact paths",
+        "links and buttons must perform useful actions"
+      ]
+    },
+    {
+      "category": "Mission Coverage",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": [
+        "client-safe artifact review"
+      ],
+      "reason": "The generator must keep future client repos safe while still carrying enough MDE structure for validation and learning.",
+      "required_evidence": [
+        "MISSION.md seed is generated or described",
+        ".mde/project.json seed is generated or described",
+        ".mde/validation-strategy.json seed is generated or described",
+        ".mde/outbox/events.jsonl guidance is generated or described",
+        "docs/client-intake-needed.md is generated or described",
+        "docs/content-needed-from-client.md is generated or described",
+        "docs/website-build-brief.md is generated or described",
+        "docs/launch-validation-plan.md is generated or described",
+        "docs/deployment.md is generated or described",
+        "central private ledgers, cross-client lessons, and confidential internal strategy are excluded"
+      ]
+    }
+  ],
+  "external_validators": [
+    {
+      "name": "generated-output-link-check",
+      "required": false,
+      "priority": "Medium",
+      "reason": "Useful after sample launch packs include outbound links, but not required during initial Generation 0."
+    },
+    {
+      "name": "json-schema-validation",
+      "required": true,
+      "priority": "High",
+      "reason": "Structured generator outputs should remain parseable and suitable for automation."
+    }
+  ],
+  "mde_native_validators": [
+    "stale assessment check",
+    "privacy/confidentiality review",
+    "assessment evidence traceability review",
+    "SEO/AEO service-area coverage review",
+    "Northvalley repo and Cloudflare deployment checklist",
+    "main/prod branch sync requirement review",
+    "client-safe artifact review"
+  ],
+  "sample_fixtures_required": [
+    {
+      "fixture": "assessment-with-missing-service-area-pages",
+      "purpose": "Prove the generator creates service-area page requirements without making unsupported claims."
+    },
+    {
+      "fixture": "assessment-with-faq-and-ai-discoverability-gap",
+      "purpose": "Prove the generator includes AEO and FAQ requirements."
+    },
+    {
+      "fixture": "assessment-with-local-visibility-and-google-business-gap",
+      "purpose": "Prove the generator asks for Google Business/Profile evidence and local NAP/service-area content."
+    },
+    {
+      "fixture": "assessment-with-broken-link-or-image-claim",
+      "purpose": "Prove the generator requires exact evidence URLs or a verification step."
+    },
+    {
+      "fixture": "client-with-prod-branch-deploy-policy",
+      "purpose": "Prove the generator includes the main/prod sync check before deployment."
+    }
+  ],
+  "skipped_validations": [],
+  "expensive_validations": [
+    {
+      "validation": "Full generated website build and deploy",
+      "reason": "Not required for Generator Generation 0; run when validating an actual client website repo generated from the launch pack.",
+      "revisit_when": "First end-to-end sample client website build is created."
+    },
+    {
+      "validation": "Live Cloudflare deployment",
+      "reason": "Requires real repo, domain, Cloudflare credentials, and client approval.",
+      "revisit_when": "A real client website repo is ready for launch validation."
+    }
+  ],
+  "coverage_targets": {
+    "critical_mission_objectives": 1,
+    "critical_context_pack_rules": 1,
+    "high_priority_context_pack_rules": 0.9,
+    "required_output_artifacts": 1,
+    "technical_deployment_constraints": 1,
+    "assessment_traceability": 1
+  },
+  "second_run_policy": {
+    "description": "Two independent Validation Gate passes are required for phase exit, with risk-based rerun.",
+    "rerun_required": [
+      "all Critical validations",
+      "failed validations",
+      "changed-output validations",
+      "assessment traceability checks",
+      "client-safe artifact checks",
+      "technical deployment constraints"
+    ],
+    "may_skip_with_reason": [
+      "unaffected Medium or Low checks",
+      "external validators marked optional and not relevant to the current fixture"
+    ]
+  },
+  "created_at": "2026-06-15",
+  "updated_at": "2026-06-15"
+}

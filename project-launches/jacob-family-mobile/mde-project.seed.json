@@ -1,0 +1,11 @@
+{
+  "project_id": "jacob-family-mobile",
+  "project_name": "Jacob Family Mobile",
+  "mde_status": "planned",
+  "artifact_profiles": ["mobile_app", "personalized_software", "family_privacy", "notification_workflow", "offline_workflow"],
+  "context_packs": ["mobile-companion-app", "personalized-family-software"],
+  "upstream_dependencies": ["jacob-family", "mde"],
+  "downstream_dependencies": ["mde"],
+  "confidentiality": "private"
+}
+

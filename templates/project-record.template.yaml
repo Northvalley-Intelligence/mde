@@ -1,0 +1,20 @@
+- id: project-id
+  name: Project Name
+  type: product
+  repo_or_path: "../project-id"
+  status: active
+  mde_status: not_started
+  migration_priority: 99
+  business_role: ""
+  owner: "Ferosh"
+  confidentiality: private
+  upstream_dependencies: []
+  downstream_dependencies: []
+  primary_artifacts: []
+  artifact_profiles: []
+  context_packs: []
+  validation_strategy_status: missing
+  central_sync_status: not_started
+  current_session_status: unknown
+  skill_bootstrap_required: true
+  notes: ""

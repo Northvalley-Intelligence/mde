@@ -1,0 +1,9 @@
+- id: DEP-000
+  from: source-project
+  to: downstream-project
+  type: data_contract
+  description: ""
+  contract_artifacts: []
+  risk_level: medium
+  validation_needed: []
+

@@ -1,0 +1,46 @@
+{
+  "strategy_id": "VALSTRAT-001",
+  "project_type": "",
+  "artifact_profiles": [],
+  "mission_phase": "Generation 0",
+  "selected_validations": [
+    {
+      "category": "Functional",
+      "required": true,
+      "priority": "Critical",
+      "tools_or_methods": ["BDD"],
+      "reason": "Validates mission-critical behavior."
+    }
+  ],
+  "external_validators": [],
+  "mde_native_validators": [],
+  "skipped_validations": [
+    {
+      "category": "",
+      "reason": "",
+      "revisit_when": ""
+    }
+  ],
+  "expensive_validations": [
+    {
+      "name": "",
+      "run_policy": "release_only | before_phase_exit | on_affected_changes | manual"
+    }
+  ],
+  "second_run_policy": {
+    "description": "Two independent Validation Gate passes are required for phase exit, but the second run is risk-based.",
+    "rerun_required": [
+      "all critical validations",
+      "validations that failed in the first run",
+      "validations affected by code or artifact changes",
+      "validations related to unresolved high risks",
+      "non-deterministic or environment-sensitive validations"
+    ],
+    "may_skip_with_reason": [
+      "validations clearly unaffected by changes",
+      "expensive validations with stable prior results",
+      "validations not relevant to the current phase"
+    ]
+  }
+}
+
