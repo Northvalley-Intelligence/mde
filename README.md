@@ -125,6 +125,14 @@ Central learning can later become context packs, validators, templates, runbooks
 6. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
 7. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.
 
+## Public Example Implementations
+
+These public repositories show MDE applied to real tools and websites:
+
+- [local-website-growth-assessment](https://github.com/Northvalley-Intelligence/local-website-growth-assessment): local website assessment tooling that turns a website review into structured findings, validation evidence, and improvement direction.
+- [client-website-build-brief-generator](https://github.com/Northvalley-Intelligence/client-website-build-brief-generator): a generator for client website launch packs, including assessment-to-build traceability, SEO/AEO service-area strategy, technical build prompts, and validation planning.
+- [northvalleyintel.com](https://github.com/Northvalley-Intelligence/northvalleyintel.com): a public website implementation that can be inspected as an example of MDE-supported delivery for Northvalley Intelligence.
+
 ## Public Scope
 
 This public repo is the reusable MDE backbone. Local private ledgers, active portfolio state, personal working notes, and client/private handoff material are intentionally excluded from Git.
