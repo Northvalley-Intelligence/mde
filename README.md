@@ -136,3 +136,9 @@ These public repositories show MDE applied to real tools and websites:
 ## Public Scope
 
 This public repo is the reusable MDE backbone. Local private ledgers, active portfolio state, personal working notes, and client/private handoff material are intentionally excluded from Git.
+
+## License
+
+MDE is released under the [Apache License 2.0](LICENSE). Reuse is encouraged, including for commercial and internal projects. The license permits use, modification, and distribution while preserving copyright and license notices.
+
+The license does not grant trademark rights to the Northvalley Intelligence name, marks, or branding.
