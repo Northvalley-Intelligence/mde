@@ -7,6 +7,7 @@ Do not restart the mission.
 Do not rewrite `MISSION.md` unless the mission actually changed.
 Do not rebuild the `.mde` folder from scratch.
 Do not discard existing generations, validation runs, findings, or mission updates.
+Do not modify sibling repositories from this session. Related repos may be read for context only.
 
 Your job is to bridge this already-MDE project into the central MDE portfolio memory and just-in-time learning discipline.
 
@@ -64,6 +65,7 @@ At the end of the session, perform Learning Triage and Sync:
 8. What downstream projects are affected?
 9. What outbox records were written?
 10. What should be imported into central `mde`?
+11. Was meaningful code submitted to GitHub? Include branch and commit SHA, or record the blocker.
+12. If production-deployed, is `main` in sync with deployed production code? Include deployed commit/source, or record the approved exception/blocker.
 
 Do not dump code. Summarize in mission language.
-

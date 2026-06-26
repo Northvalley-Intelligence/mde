@@ -5,6 +5,7 @@ You are starting a new Codex session in a repository that already uses MDE.
 Do not run full MDE adoption.
 Do not regenerate the mission unless asked.
 Do not rebuild existing MDE artifacts.
+Do not modify sibling repositories from this session. Related repos may be read for context only.
 
 Start by reading:
 
@@ -33,3 +34,5 @@ If the sync outbox is missing, create only the missing outbox files.
 
 Before making changes, perform Applicable Learning Check.
 
+At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.

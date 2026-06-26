@@ -6,3 +6,8 @@ After meaningful work, record validation status, downstream impacts, reusable le
 
 ChatGPT handoffs should include enough context to avoid retelling the project history.
 
+Handoffs must also include:
+
+- GitHub submission status: branch and commit SHA, or exact blocker
+- production parity status for deployed projects: deployed commit/source and `main` sync state, or approved exception/blocker
+- repository ownership status: confirm no sibling repos were modified, or name the target-repo session required

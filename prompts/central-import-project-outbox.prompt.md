@@ -4,6 +4,8 @@ You are in the central `mde` repo.
 
 Import project-local MDE outbox records from a project repo.
 
+Read project repos only. Do not modify the source project repo during central import.
+
 Inputs:
 
 - path to project repo
@@ -30,4 +32,3 @@ Tasks:
 Do not blindly import project-only noise.
 Do not make every local lesson global.
 Preserve confidentiality labels.
-

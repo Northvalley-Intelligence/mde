@@ -115,6 +115,16 @@ Project repos own their implementation. Central MDE imports only useful cross-re
 
 Central learning can later become context packs, validators, templates, runbooks, or skill updates.
 
+### Repository Ownership
+
+One repo equals one writable Codex session. A session may read sibling repos for dependency context, but it must not edit, format, install, commit, push, or deploy another project. Cross-project changes are routed through outbox records, central MDE imports, handoff notes, or a new Codex session opened in the target repo.
+
+### GitHub And Production Parity
+
+After meaningful code changes or a second clean Validation Gate pass, the project should be submitted to GitHub. If a commit or push cannot be completed, record the exact blocker in the generation evidence and final handoff.
+
+For production-deployed projects, production must be traceable to the submitted GitHub commit. `main` should match the production deployment source unless a documented staged-release exception exists. Do not mark production readiness complete when local code, `origin/main`, and deployed production code disagree.
+
 ## Quick Start
 
 1. Pick the right prompt with `prompts/session-router.prompt.md`.
@@ -122,8 +132,9 @@ Central learning can later become context packs, validators, templates, runbooks
 3. Define the project Validation Strategy with `prompts/project-validation-strategy-generation0.prompt.md` and `templates/validation-strategy.template.json`.
 4. Load relevant context packs and issue signatures before implementation.
 5. Validate with the project-specific Validation Gate, then run the required second pass.
-6. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
-7. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.
+6. Submit meaningful code changes to GitHub or record the blocker.
+7. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
+8. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.
 
 ## Public Example Implementations
 

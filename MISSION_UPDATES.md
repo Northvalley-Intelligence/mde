@@ -24,3 +24,9 @@
 - Added project outbox contract for local-to-central sync.
 - Added `skill-packages/mde-skill-next` for future promotion into `codex-skills`.
 - Added central issue signature seeds and expanded content/skill candidate ledgers.
+
+## 2026-06-25
+
+- Added repository ownership boundary: a Codex session may read related repos for context but may write only inside its session home repository.
+- Added GitHub submission discipline: after meaningful code changes or a second clean Validation Gate pass, code should be committed and pushed, or a blocker must be recorded.
+- Added production parity discipline: production-deployed projects must keep `main` traceable to deployed production code unless a documented staged-release exception is approved.

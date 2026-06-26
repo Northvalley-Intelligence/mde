@@ -31,3 +31,4 @@ Already-MDE projects should not be migrated again. They should add only missing 
 
 Project outbox files are local write targets. Central `mde` imports central-worthy records during regular learning audits or explicit import sessions.
 
+Project outbox records are the cross-repo change path. They do not authorize editing another repository from the current session.

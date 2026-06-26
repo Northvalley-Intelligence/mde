@@ -14,6 +14,13 @@
   ],
   "external_validators": [],
   "mde_native_validators": [],
+  "repository_governance": {
+    "session_home_write_scope_required": true,
+    "github_submission_required_after_code_changes": true,
+    "github_submission_required_after_second_clean_validation_pass": true,
+    "production_parity_required_for_deployed_projects": true,
+    "blocked_submission_must_be_recorded": true
+  },
   "skipped_validations": [
     {
       "category": "",
@@ -43,4 +50,3 @@
     ]
   }
 }
-

@@ -7,6 +7,7 @@ Run a regular MDE learning audit to check whether individual project work is imp
 Do not modify project repos unless explicitly requested.
 Do not import project-only noise.
 Preserve confidentiality labels.
+Sibling repos are read-only during this audit. If a project needs code or MDE artifact changes, record a follow-up and open Codex in that project root.
 
 Audit steps:
 
@@ -47,4 +48,3 @@ Is MDE learning? yes/no/partial
 Recommended next action:
 ...
 ```
-

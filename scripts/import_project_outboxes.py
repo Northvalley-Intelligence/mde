@@ -13,6 +13,7 @@ This is intentionally conservative:
 from __future__ import annotations
 
 import json
+import hashlib
 import sys
 from pathlib import Path
 
@@ -35,10 +36,16 @@ ID_FIELDS = [
     "event_id",
     "lesson_id",
     "content_id",
+    "content_seed_id",
+    "seed_id",
     "candidate_id",
     "issue_signature",
     "impact_id",
 ]
+
+PROJECT_FIELDS = ["project_id", "project", "source_project"]
+TIME_FIELDS = ["timestamp", "occurred_at", "created_at", "recorded_at", "date"]
+TYPE_FIELDS = ["event_type", "type", "lesson_type"]
 
 
 def load_projects() -> list[dict]:
@@ -65,6 +72,21 @@ def load_projects() -> list[dict]:
     return list(data.get("projects", []))
 
 
+def sibling_outboxes_outside_portfolio(projects: list[dict]) -> list[str]:
+    portfolio_paths = {
+        (ROOT / project["repo_or_path"]).resolve()
+        for project in projects
+        if project.get("repo_or_path") and project.get("repo_or_path") != "."
+    }
+    outside: list[str] = []
+    for sibling in ROOT.parent.iterdir():
+        if not sibling.is_dir() or sibling.resolve() in portfolio_paths:
+            continue
+        if (sibling / ".mde" / "outbox").exists():
+            outside.append(sibling.name)
+    return sorted(outside)
+
+
 def read_jsonl(path: Path) -> list[dict]:
     records: list[dict] = []
     if not path.exists():
@@ -84,7 +106,16 @@ def record_key(record: dict) -> str | None:
         value = record.get(field)
         if value:
             return f"{field}:{value}"
-    return None
+
+    project = next((str(record.get(field)) for field in PROJECT_FIELDS if record.get(field)), "")
+    time = next((str(record.get(field)) for field in TIME_FIELDS if record.get(field)), "")
+    record_type = next((str(record.get(field)) for field in TYPE_FIELDS if record.get(field)), "")
+    summary = str(record.get("summary") or record.get("core_insight") or "")
+    if project and summary:
+        return f"composite:{project}:{time}:{record_type}:{summary}"
+
+    canonical = json.dumps(record, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    return f"sha256:{hashlib.sha256(canonical.encode('utf-8')).hexdigest()}"
 
 
 def existing_keys(path: Path) -> set[str]:
@@ -107,9 +138,22 @@ def append_records(dest: Path, records: list[dict]) -> int:
     return imported
 
 
+def importable_record_count(dest: Path, records: list[dict]) -> int:
+    seen = existing_keys(dest)
+    importable = 0
+    for record in records:
+        key = record_key(record)
+        if key in seen:
+            continue
+        seen.add(key)
+        importable += 1
+    return importable
+
+
 def main() -> int:
     write = "--write" in sys.argv[1:]
     projects = load_projects()
+    outside_portfolio = sibling_outboxes_outside_portfolio(projects)
     checked = 0
     imported_total = 0
     missing_outboxes: list[str] = []
@@ -131,13 +175,17 @@ def main() -> int:
             if write:
                 imported_total += append_records(ledger_path, records)
             else:
-                imported_total += len(records)
+                imported_total += importable_record_count(ledger_path, records)
 
     print("MDE Outbox Import Summary")
     print(f"Projects checked: {checked}")
     print(f"Mode: {'write' if write else 'dry-run'}")
     print(f"Records {'imported' if write else 'available to import'}: {imported_total}")
     print(f"Projects without accessible outbox: {', '.join(missing_outboxes) if missing_outboxes else 'none'}")
+    print(
+        "Sibling outboxes outside portfolio: "
+        f"{', '.join(outside_portfolio) if outside_portfolio else 'none'}"
+    )
     return 0
 
 

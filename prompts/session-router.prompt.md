@@ -2,6 +2,8 @@
 
 Decide which MDE prompt to use before starting or continuing a Codex session.
 
+Global repository rule: a session may read related repos for context, but it may write only inside the repository that is the session home. Do not edit, format, commit, push, deploy, migrate, or reset sibling repos from this session. If another repo needs changes, create a handoff/outbox record and open Codex in that repo.
+
 ## CASE A: Working In Central `mde` Repo
 
 Use when updating shared MDE memory, prompts, patterns, validators, context packs, ledgers, launch packs, skill packages, or briefings.
@@ -64,6 +66,12 @@ Use when skill candidates are ready to become actual skill behavior.
 
 Prompt: `prompts/skill-update-promotion.prompt.md`
 
+## Project Repository Governance Sync
+
+Use from inside a project repo when applying repository ownership, GitHub submission, and production parity rules to that one project.
+
+Prompt: `prompts/project-repository-governance-sync.prompt.md`
+
 ## Central Import From Project Outbox
 
 Use when a project produced `.mde/outbox` events, lessons, impacts, skill candidates, or content seeds.
@@ -75,3 +83,6 @@ Prompt: `prompts/central-import-project-outbox.prompt.md`
 Do not use the non-MDE adoption prompt in a repo that already uses MDE.
 Do not use the full project bootstrap just to continue an existing session.
 Do not use a parent-folder Codex window for normal coding.
+Do not modify sibling repositories from the current session.
+After meaningful code changes or two clean Validation Gate passes, submit work to GitHub or record the blocker.
+For production-deployed projects, keep `main` in sync with deployed production code unless an approved staged-release exception is documented.

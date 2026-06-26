@@ -9,4 +9,8 @@ Every meaningful session should ask:
 - What content seed or skill candidate emerged?
 - What downstream projects are affected?
 - What should central `mde` import?
+- Was meaningful code/config/deploy work committed and pushed to GitHub?
+- If production-deployed, is `main` in sync with deployed production code?
+- Were sibling repositories left unmodified?
 
+Do not end meaningful code sessions with silent unsubmitted work. If push/PR creation is blocked, record the blocker and next action.

@@ -2,6 +2,8 @@
 
 Use this runbook before choosing a prompt for Codex work.
 
+Global repository rule: a session may read sibling repos for context, but it may write only inside the repository that is the session home. If another project needs changes, record the impact and open a Codex session in that project root.
+
 ## Routing Table
 
 | Case | Use When | Prompt |
@@ -16,6 +18,7 @@ Use this runbook before choosing a prompt for Codex work.
 | H: End of meaningful project session | Closing project work with learning and sync | `prompts/session-end-learning-triage-and-sync.prompt.md` |
 | I: Regular central learning audit | Checking whether MDE is learning from project work | `prompts/regular-mde-learning-audit.prompt.md` |
 | J: Promote skill update | Moving central learning into `codex-skills` | `prompts/skill-update-promotion.prompt.md` |
+| Project governance sync | Applying repository ownership, GitHub submission, and production parity rules to one project | `prompts/project-repository-governance-sync.prompt.md` |
 | Central import from project outbox | A project produced `.mde/outbox` records for central MDE | `prompts/central-import-project-outbox.prompt.md` |
 
 ## Guardrails
@@ -23,3 +26,6 @@ Use this runbook before choosing a prompt for Codex work.
 Do not use the non-MDE adoption prompt in a repo that already uses MDE.
 Do not use the full project bootstrap just to continue an existing session.
 Do not use a parent-folder Codex window for normal coding.
+Do not modify sibling repositories from the current session.
+At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.

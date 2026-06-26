@@ -12,3 +12,6 @@ Before starting work:
 6. Tell me whether this repo needs MDE migration before work can safely continue.
 
 Do not make broad unrelated changes.
+Do not modify sibling repositories from this session. Related repos may be read for context only.
+At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.
