@@ -126,7 +126,7 @@ This refreshes that already-open session without pretending it reloaded the MDE 
 
 There is active `jacob-family` work in progress in its own project session. Do not modify `jacob-family` from central `mde`.
 
-Read-only status observed from central `mde` on 2026-06-26:
+Central `mde` did not modify `jacob-family`; it only observed status with read-only Git commands. Read-only status observed from central `mde` on 2026-06-26:
 
 ```text
 repo: ../jacob-family
