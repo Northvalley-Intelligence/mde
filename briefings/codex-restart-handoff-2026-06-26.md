@@ -122,6 +122,40 @@ Read ../mde/prompts/project-repository-governance-sync.prompt.md and ../mde/runb
 
 This refreshes that already-open session without pretending it reloaded the MDE skill.
 
+## Active Jacob Family Work
+
+There is active `jacob-family` work in progress in its own project session. Do not modify `jacob-family` from central `mde`.
+
+Read-only status observed from central `mde` on 2026-06-26:
+
+```text
+repo: ../jacob-family
+branch: staging
+remote tracking: origin/staging
+status: staging...origin/staging [ahead 2]
+modified files:
+- src/domain.mjs
+- src/worker.mjs
+- test/domain.test.mjs
+- test/worker.test.mjs
+recent commits:
+- a6323f4 Record Grace dinner board production deployment [skip ci]
+- a184b3e Promote Grace dinner board to production
+- c8410ac Apply repository governance sync [skip ci]
+```
+
+Before moving or deleting the old iCloud workspace, preserve this work from the `jacob-family` session itself:
+
+1. Finish or intentionally pause the `jacob-family` generation in the Codex window whose home folder is `jacob-family`.
+2. Commit and push from that `jacob-family` session when validation is complete, or record the blocker there.
+3. If moving before the work is committed, copy the full `jacob-family` working tree to the new local location so the uncommitted file changes are not lost.
+
+Bridge prompt for the already-open `jacob-family` Codex window:
+
+```text
+Read ../mde/prompts/project-repository-governance-sync.prompt.md and ../mde/runbooks/repository-governance.md, then apply the rules to jacob-family only. Do not modify sibling repos. Preserve the current staging branch work: staging is ahead of origin/staging by 2 and has modified src/domain.mjs, src/worker.mjs, test/domain.test.mjs, and test/worker.test.mjs. Continue the current jacob-family generation from this project session. After meaningful code changes or two clean Validation Gate passes, submit jacob-family code to GitHub or record the blocker. Because jacob-family is production-deployed, verify main is in sync with deployed production code or record the approved exception/blocker.
+```
+
 ## Per-Project Rollout For New Project Sessions
 
 For a project that does not already have an open Codex window:
@@ -155,8 +189,9 @@ Read briefings/codex-restart-handoff-2026-06-26.md, then continue central MDE wo
 ```
 
 6. Bridge any already-open project Codex windows with the bridge prompt above.
-7. For production projects, prioritize governance sync first.
-8. Reconcile outbox-bearing sibling repos not yet in central portfolio memory.
+7. Preserve the active `jacob-family` working tree before deleting or replacing the iCloud workspace.
+8. For production projects, prioritize governance sync first.
+9. Reconcile outbox-bearing sibling repos not yet in central portfolio memory.
 
 ## Hard Rules To Preserve After Restart
 
