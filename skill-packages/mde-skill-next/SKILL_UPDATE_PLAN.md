@@ -16,5 +16,6 @@ Promote these behaviors into the MDE skill:
 12. Repository ownership boundary.
 13. GitHub submission and production parity gates.
 14. Project repository governance sync.
+15. Summary-first agent-to-user communication.
 
 Do not promote static project templates as the primary bootstrap mechanism. Use the skill to load current central MDE knowledge.

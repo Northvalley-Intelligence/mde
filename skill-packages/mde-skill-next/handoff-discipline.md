@@ -6,6 +6,8 @@ After meaningful work, record validation status, downstream impacts, reusable le
 
 ChatGPT handoffs should include enough context to avoid retelling the project history.
 
+Handoffs and user-facing progress updates should be summary-first. Do not include raw code, raw diffs, or long command output unless explicitly requested.
+
 Handoffs must also include:
 
 - GitHub submission status: branch and commit SHA, or exact blocker

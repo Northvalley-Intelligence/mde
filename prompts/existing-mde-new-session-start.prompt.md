@@ -6,6 +6,7 @@ Do not run full MDE adoption.
 Do not regenerate the mission unless asked.
 Do not rebuild existing MDE artifacts.
 Do not modify sibling repositories from this session. Related repos may be read for context only.
+Use summary-first agent-to-user communication. Do not paste raw code, raw diffs, or long command output in updates or reports unless explicitly requested.
 
 Start by reading:
 
@@ -34,5 +35,5 @@ If the sync outbox is missing, create only the missing outbox files.
 
 Before making changes, perform Applicable Learning Check.
 
-At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+At session end or after validation readiness, submit meaningful code changes to GitHub or record the blocker.
 For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.

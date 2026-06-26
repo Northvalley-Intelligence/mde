@@ -16,6 +16,8 @@
 
 `<short summary>`
 
+Do not paste raw code or raw diffs here. Use concise file/component references and mission impact.
+
 ## Validation
 
 `<commands or checks run and result>`

@@ -17,9 +17,21 @@
   "repository_governance": {
     "session_home_write_scope_required": true,
     "github_submission_required_after_code_changes": true,
-    "github_submission_required_after_second_clean_validation_pass": true,
+    "github_submission_required_after_validation_readiness": true,
     "production_parity_required_for_deployed_projects": true,
     "blocked_submission_must_be_recorded": true
+  },
+  "reporting_governance": {
+    "summary_first_agent_to_user_communication": true,
+    "applies_to_progress_updates": true,
+    "applies_to_command_result_explanations": true,
+    "raw_code_or_diff_requires_explicit_request": true,
+    "long_command_output_requires_summary": true,
+    "output_priority_order": ["blocking_ask_or_decision_needed", "current_action_and_why_it_matters", "mission_impact", "validation_status_and_critical_high_findings", "short_github_submission_and_deploy_status", "short_files_or_components_touched", "next_action"],
+    "compact_by_default": ["github_submission_and_deploy_status", "files_or_components_touched"],
+    "expanded_detail_requires_request": true,
+    "drop_first": ["raw_diffs", "raw_code", "long_logs", "line_by_line_implementation_narration"],
+    "default_report_fields": ["current_action", "why_it_matters", "mission_impact", "files_or_components", "validation", "findings", "commit_or_deploy_status", "next_action"]
   },
   "skipped_validations": [
     {
@@ -35,7 +47,17 @@
     }
   ],
   "second_run_policy": {
-    "description": "Two independent Validation Gate passes are required for phase exit, but the second run is risk-based.",
+    "description": "Phase exit requires a Validation Gate plus a Second Validation Decision. The second validation must add independent signal; it is not a blind duplicate rerun.",
+    "independent_design_required": true,
+    "different_tests_or_validation_angles_preferred": true,
+    "same_exact_rerun_counts_only_for": [
+      "nondeterministic behavior",
+      "environment-sensitive behavior",
+      "external dependency instability",
+      "known flaky paths",
+      "concurrency or timing risk"
+    ],
+    "no_signal_skip_allowed_with_reason": true,
     "rerun_required": [
       "all critical validations",
       "validations that failed in the first run",

@@ -17,4 +17,4 @@ Tell me:
 9. Should an event be added to `.mde/outbox/events.jsonl`?
 10. Should the central `mde` repo be updated?
 
-Do not dump code. Summarize in mission language.
+Do not dump code, raw diffs, or long command output. Summarize what happened and why it matters in mission language unless Ferosh explicitly asks for code.

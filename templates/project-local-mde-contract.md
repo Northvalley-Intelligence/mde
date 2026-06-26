@@ -82,5 +82,8 @@ Repository governance:
 
 - A Codex session may write only inside the project repo that is its session home.
 - Related repos may be read for context, but not modified from this session.
-- Meaningful code/config/deploy changes should be committed and pushed before session end or after two clean Validation Gate passes.
+- Meaningful code/config/deploy changes should be committed and pushed before session end or after validation readiness.
 - Production-deployed projects must record the deployed commit/source and keep `main` in sync with production unless an approved staged-release exception is documented.
+- MDE agent-to-user communication should summarize current action, why it matters, mission impact, validation, risks, short files/components, short commits/deployment status, and next actions instead of pasting raw code or diffs.
+- When output is constrained, preserve blockers/decisions, current action, mission impact, validation, short GitHub/deploy status, short touched files/components, and next action before implementation detail.
+- Keep GitHub/deploy and files/components entries compact by default; expand only when Ferosh asks for detail.

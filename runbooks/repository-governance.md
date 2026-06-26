@@ -26,7 +26,7 @@ If a downstream project needs code changes, record the impact and start or reque
 
 ## GitHub Submission Gate
 
-At the end of a meaningful code session, and after a second clean Validation Gate pass, check submission state:
+At the end of a meaningful code session, and after validation readiness, check submission state:
 
 1. Run `git status --short --branch`.
 2. Confirm the changed files belong to the session home repo.

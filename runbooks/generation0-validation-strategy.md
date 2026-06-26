@@ -19,7 +19,8 @@ Previous choices such as Playwright, axe-core, Lighthouse, Pa11y, OWASP ZAP, App
 
 BDD is Functional Validation.
 Quality Gate is deprecated as a standalone idea and replaced by Validation Gate.
-Phase exit requires two independent Validation Gate passes, not two BDD passes.
+Phase exit requires a Validation Gate plus a Second Validation Decision, not two BDD passes.
+
+The second validation must be independently designed and value-added. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate. Rerun the same exact deterministic checks only when that repetition can expose nondeterminism, environment sensitivity, external dependency instability, or a known flaky path. If no credible second-pass signal exists, record `second_validation_no_signal` with the reason.
 
 Use `prompts/project-validation-strategy-generation0.prompt.md` and `templates/validation-strategy.template.json` to create `.mde/validation-strategy.json`.
-

@@ -4,6 +4,10 @@ Decide which MDE prompt to use before starting or continuing a Codex session.
 
 Global repository rule: a session may read related repos for context, but it may write only inside the repository that is the session home. Do not edit, format, commit, push, deploy, migrate, or reset sibling repos from this session. If another repo needs changes, create a handoff/outbox record and open Codex in that repo.
 
+Global communication rule: MDE agent-to-user updates are summary-first by default. During work and in final responses, do not paste raw code, raw diffs, or long command output unless Ferosh explicitly asks. Summarize what is happening, why it matters, mission impact, validation, findings, short changed files/components, short commit/deploy status, and next action.
+
+When output is reduced, preserve this order: blocking ask or decision needed, current action and why it matters, mission impact, validation and Critical/High findings, short GitHub/deploy status, short files/components touched, next action. Keep GitHub/deploy and files/components entries compact by default, then expand only if Ferosh asks. Omit raw code, raw diffs, long logs, and line-by-line implementation narration first.
+
 ## CASE A: Working In Central `mde` Repo
 
 Use when updating shared MDE memory, prompts, patterns, validators, context packs, ledgers, launch packs, skill packages, or briefings.
@@ -84,5 +88,6 @@ Do not use the non-MDE adoption prompt in a repo that already uses MDE.
 Do not use the full project bootstrap just to continue an existing session.
 Do not use a parent-folder Codex window for normal coding.
 Do not modify sibling repositories from the current session.
-After meaningful code changes or two clean Validation Gate passes, submit work to GitHub or record the blocker.
+After meaningful code changes or validation readiness, submit work to GitHub or record the blocker.
 For production-deployed projects, keep `main` in sync with deployed production code unless an approved staged-release exception is documented.
+Do not dump raw code or diffs in MDE progress updates, handoffs, or final responses unless explicitly requested.

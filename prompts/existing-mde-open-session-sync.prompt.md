@@ -8,6 +8,7 @@ Do not rewrite `MISSION.md` unless the mission actually changed.
 Do not rebuild the `.mde` folder from scratch.
 Do not discard existing generations, validation runs, findings, or mission updates.
 Do not modify sibling repositories from this session. Related repos may be read for context only.
+Use summary-first agent-to-user communication. Do not paste raw code, raw diffs, or long command output in updates or reports unless explicitly requested.
 
 Your job is to bridge this already-MDE project into the central MDE portfolio memory and just-in-time learning discipline.
 

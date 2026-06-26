@@ -13,5 +13,6 @@ Before starting work:
 
 Do not make broad unrelated changes.
 Do not modify sibling repositories from this session. Related repos may be read for context only.
-At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+At session end or after validation readiness, submit meaningful code changes to GitHub or record the blocker.
 For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.
+Use summary-first agent-to-user communication by default; do not paste raw code or diffs unless explicitly requested.

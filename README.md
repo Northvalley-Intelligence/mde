@@ -35,6 +35,35 @@ MDE separates artifacts by audience:
 
 This separation keeps humans oriented while giving agents durable, machine-readable context.
 
+### Summary-First Communication
+
+MDE treats code as implementation evidence, not the user-facing completion artifact. Progress updates, command-result explanations, final responses, handoffs, generation summaries, and status docs should summarize:
+
+- what the agent is doing now
+- why the action matters
+- mission impact
+- short files or components touched
+- validation run and result
+- Critical/High findings and blockers
+- short commit and deployment status
+- next action
+
+Do not paste raw code, raw diffs, or long command output unless the user explicitly asks. Use file references, short excerpts, commit SHAs, validation evidence, and concise status summaries instead.
+
+When output is constrained, keep this priority order:
+
+1. Ferosh's blocking ask or decision needed.
+2. Current action and why it matters.
+3. Mission impact.
+4. Validation status and Critical/High findings.
+5. Short GitHub submission and deployment status.
+6. Short files or components touched.
+7. Next action.
+
+Items 5 and 6 should stay compact by default: use branch/commit/deploy/parity state and component or file-area names, then expand only when the user asks.
+
+Drop first: raw diffs, raw code, long logs, and line-by-line implementation narration.
+
 ### Generation 0
 
 Every new MDE project starts with Generation 0 before implementation.
@@ -71,12 +100,12 @@ BDD belongs inside Functional Validation. It is important, but it is not the who
 Phase exit is:
 
 ```text
-Validation Gate passed twice
+Validation Gate passes, then the Second Validation Decision adds independent signal or records why no second-pass signal exists
 ```
 
 A Validation Gate is the project-specific validation run selected for the current phase. It may include BDDs, tests, static checks, accessibility checks, usability review, UI standards review, deployment checks, data checks, or other project-relevant evidence.
 
-The second pass is risk-based and should run with no implementation changes between clean passes.
+The second validation is not a blind rerun. It must be independently designed and value-added. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate. Rerunning the same exact deterministic test set counts only when it can expose nondeterminism, environment sensitivity, external dependency instability, or a known flaky path, and the reason must be recorded. If no credible second-pass signal exists, record `second_validation_no_signal` instead of spending time on ceremony.
 
 ### Just-In-Time Learning
 
@@ -121,7 +150,7 @@ One repo equals one writable Codex session. A session may read sibling repos for
 
 ### GitHub And Production Parity
 
-After meaningful code changes or a second clean Validation Gate pass, the project should be submitted to GitHub. If a commit or push cannot be completed, record the exact blocker in the generation evidence and final handoff.
+After meaningful code changes or validation readiness, the project should be submitted to GitHub. If a commit or push cannot be completed, record the exact blocker in the generation evidence and final handoff.
 
 For production-deployed projects, production must be traceable to the submitted GitHub commit. `main` should match the production deployment source unless a documented staged-release exception exists. Do not mark production readiness complete when local code, `origin/main`, and deployed production code disagree.
 
@@ -131,7 +160,7 @@ For production-deployed projects, production must be traceable to the submitted 
 2. For a new project, run `prompts/new-project-generation0-bootstrap.prompt.md`.
 3. Define the project Validation Strategy with `prompts/project-validation-strategy-generation0.prompt.md` and `templates/validation-strategy.template.json`.
 4. Load relevant context packs and issue signatures before implementation.
-5. Validate with the project-specific Validation Gate, then run the required second pass.
+5. Validate with the project-specific Validation Gate, then make the Second Validation Decision.
 6. Submit meaningful code changes to GitHub or record the blocker.
 7. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
 8. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.

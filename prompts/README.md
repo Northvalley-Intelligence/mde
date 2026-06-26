@@ -12,5 +12,6 @@ The routing distinction matters:
 
 Do not use a parent-folder Codex window for normal project coding.
 Do not modify sibling repositories from the current session; read them for context only.
-At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+At session end or after validation readiness, submit meaningful code changes to GitHub or record the blocker.
 For production-deployed projects, verify `main` is in sync with deployed production code or record the approved exception/blocker.
+Use summary-first agent-to-user communication by default; do not paste raw code, raw diffs, or long command output unless explicitly requested.

@@ -20,5 +20,4 @@ Required outputs:
 
 Validation categories are reusable. Validation tools are project-specific.
 
-Phase exit uses two independent Validation Gate passes.
-
+Phase exit uses a project-specific Validation Gate plus a Second Validation Decision. The second validation must add independent signal or record why no second-pass signal exists.

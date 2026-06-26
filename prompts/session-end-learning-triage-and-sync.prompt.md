@@ -2,7 +2,9 @@
 
 Before ending, perform MDE Learning Triage and Sync.
 
-Report in mission language, not code dumps.
+Report in mission language, not code dumps. The user should see what happened and why it matters, not raw implementation text.
+Do not paste raw code, raw diffs, or long command output unless explicitly requested.
+If the response must be short, prioritize: blockers/decisions, mission impact, validation, Critical/High findings, short GitHub/deploy status, short files/components, next action. Keep GitHub/deploy and files/components terse by default; expand only if Ferosh asks.
 
 Answer:
 

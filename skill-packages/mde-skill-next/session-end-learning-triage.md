@@ -14,3 +14,5 @@ Every meaningful session should ask:
 - Were sibling repositories left unmodified?
 
 Do not end meaningful code sessions with silent unsubmitted work. If push/PR creation is blocked, record the blocker and next action.
+
+Report the result at summary level. The user should see mission impact, validation, risks, short files/components, short commit/deploy status, and next action, not raw code or diffs unless explicitly requested. Expand those short status fields only when Ferosh asks.

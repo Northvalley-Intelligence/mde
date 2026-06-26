@@ -12,7 +12,7 @@ If another repo needs changes, create a handoff/outbox record and open Codex in 
 
 ## GitHub Submission Gate
 
-After meaningful code/config/deploy changes, and after a second clean Validation Gate pass, the agent should:
+After meaningful code/config/deploy changes, and after validation readiness, the agent should:
 
 1. Check git status.
 2. Commit the session-home repo changes when appropriate.

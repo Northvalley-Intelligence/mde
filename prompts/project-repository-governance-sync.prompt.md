@@ -2,7 +2,7 @@
 
 Use this from inside a project repo, not from central `mde`.
 
-Purpose: apply the current MDE repository ownership, GitHub submission, and production parity rules to this project.
+Purpose: apply the current MDE repository ownership, GitHub submission, production parity, and summary-first communication rules to this project.
 
 Hard rules:
 
@@ -10,6 +10,8 @@ Hard rules:
 - Read central `../mde` artifacts for context when available.
 - Do not modify sibling repos.
 - Do not deploy or push until project validation and user approval rules are satisfied.
+- Do not paste raw code, raw diffs, or long command output in progress updates, command-result explanations, or MDE reports unless explicitly requested.
+- If output is short, keep blockers/decisions, current action, mission impact, validation, short GitHub/deploy status, short files/components, and next action before any implementation detail.
 
 Read:
 
@@ -25,7 +27,7 @@ Read:
 Then update only missing or stale project-local MDE artifacts:
 
 - `.mde/validation-strategy.json`: add repository governance checks if missing
-- `.mde/generation-summary.md` or local status doc: note GitHub submission and production parity expectations
+- `.mde/generation-summary.md` or local status doc: note GitHub submission, production parity, and summary-first communication expectations
 - deploy/release evidence: add fields for deployed commit/source only if the project already has deploy artifacts
 - `.mde/outbox/events.jsonl`: record that governance sync ran, when useful for central import
 
@@ -41,3 +43,4 @@ Report:
 8. Any blocker to enforcing the rules.
 
 Do not make product code changes unless explicitly requested.
+Report only summaries, file references, compact commit/deploy status, validation, findings, and next actions unless Ferosh explicitly asks for code or expanded detail.

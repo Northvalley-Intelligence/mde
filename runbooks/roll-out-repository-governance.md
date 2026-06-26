@@ -23,7 +23,7 @@ For each active MDE project:
 For projects with already-open Codex windows, paste this bridge instruction into that existing window:
 
 ```text
-Read ../mde/prompts/project-repository-governance-sync.prompt.md and ../mde/runbooks/repository-governance.md, then apply the rules to this project only. Do not modify sibling repos. From now on, after meaningful code changes or two clean Validation Gate passes, submit this project's code to GitHub or record the blocker. If this project is production-deployed, verify main is in sync with deployed production code or record the approved exception/blocker.
+Read ../mde/prompts/project-repository-governance-sync.prompt.md and ../mde/runbooks/repository-governance.md, then apply the rules to this project only. Do not modify sibling repos. From now on, after meaningful code changes or validation readiness, submit this project's code to GitHub or record the blocker. If this project is production-deployed, verify main is in sync with deployed production code or record the approved exception/blocker.
 ```
 
 This refreshes the session behavior without pretending the already-open window has reloaded the MDE skill.

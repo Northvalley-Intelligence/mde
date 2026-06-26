@@ -27,5 +27,5 @@ Do not use the non-MDE adoption prompt in a repo that already uses MDE.
 Do not use the full project bootstrap just to continue an existing session.
 Do not use a parent-folder Codex window for normal coding.
 Do not modify sibling repositories from the current session.
-At session end or after two clean Validation Gate passes, submit meaningful code changes to GitHub or record the blocker.
+At session end or after validation readiness, submit meaningful code changes to GitHub or record the blocker.
 For production-deployed projects, verify `main` is in sync with the deployed production code or record an approved staged-release exception.

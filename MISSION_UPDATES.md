@@ -12,7 +12,7 @@
 - Added existing-MDE open-session sync so already-MDE projects are not re-adopted or restarted.
 - Added just-in-time reusable learning through context packs, issue signatures, and validator candidates.
 - Added Generation 0 project-specific Validation Strategy discipline.
-- Recorded that Quality Gate is deprecated as standalone terminology; phase exit uses two independent Validation Gate passes.
+- Recorded that Quality Gate is deprecated as standalone terminology; phase exit uses a project-specific Validation Gate plus a Second Validation Decision.
 
 ## 2026-06-14
 
@@ -28,5 +28,10 @@
 ## 2026-06-25
 
 - Added repository ownership boundary: a Codex session may read related repos for context but may write only inside its session home repository.
-- Added GitHub submission discipline: after meaningful code changes or a second clean Validation Gate pass, code should be committed and pushed, or a blocker must be recorded.
+- Added GitHub submission discipline: after meaningful code changes or validation readiness, code should be committed and pushed, or a blocker must be recorded.
 - Added production parity discipline: production-deployed projects must keep `main` traceable to deployed production code unless a documented staged-release exception is approved.
+- Added summary-first communication discipline: MDE sessions should communicate what agents are doing, why it matters, mission outcomes, validation, risks, commits, and file references instead of raw code or diffs unless explicitly requested.
+
+## 2026-06-26
+
+- Tightened validation discipline: the Second Validation Decision must add independent signal, usually by generating different scenarios, checks, data, roles, environments, or validator angles. A same-test rerun counts only for nondeterminism, environment sensitivity, external dependency instability, concurrency/timing risk, or known flaky paths; otherwise record no second-pass signal instead of running ceremony.
