@@ -46,10 +46,22 @@
       "run_policy": "release_only | before_phase_exit | on_affected_changes | manual"
     }
   ],
-  "second_run_policy": {
-    "description": "Phase exit requires a Validation Gate plus a Second Validation Decision. The second validation must add independent signal; it is not a blind duplicate rerun.",
+  "second_validation_review": {
+    "description": "Phase exit requires a Validation Gate plus a Second Validation Review. For meaningful user-facing or mission-critical work, the second validation is a required independent third-person review.",
     "independent_design_required": true,
+    "third_person_review_required_for_user_facing_or_mission_critical_work": true,
+    "primary_review_focus": ["usability", "mission_fit", "role_fit", "workflow_fit"],
     "different_tests_or_validation_angles_preferred": true,
+    "different_signal_examples": [
+      "different user role",
+      "different data shape",
+      "different workflow order",
+      "edge case or recovery path",
+      "mobile or narrow viewport",
+      "live/staging/production environment",
+      "accessibility or keyboard behavior",
+      "integration boundary or stale persisted state"
+    ],
     "same_exact_rerun_counts_only_for": [
       "nondeterministic behavior",
       "environment-sensitive behavior",
@@ -57,7 +69,19 @@
       "known flaky paths",
       "concurrency or timing risk"
     ],
-    "no_signal_skip_allowed_with_reason": true,
+    "value_add_tracking_required": true,
+    "value_add_fields": [
+      "reviewer_perspective",
+      "different_signal_attempted",
+      "new_findings_by_severity",
+      "decisions_changed",
+      "coverage_added",
+      "product_code_changed_after_review",
+      "final_outcome"
+    ],
+    "final_outcome_values": ["new_findings", "decision_changed", "coverage_added", "no_new_findings"],
+    "reevaluate_after_consecutive_no_signal_reviews": 5,
+    "reevaluation_default_action": "tune_second_review_strategy_before_removing",
     "rerun_required": [
       "all critical validations",
       "validations that failed in the first run",

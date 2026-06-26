@@ -100,12 +100,21 @@ BDD belongs inside Functional Validation. It is important, but it is not the who
 Phase exit is:
 
 ```text
-Validation Gate passes, then the Second Validation Decision adds independent signal or records why no second-pass signal exists
+Validation Gate passes, then the Second Validation Review independently checks mission fit and usability
 ```
 
 A Validation Gate is the project-specific validation run selected for the current phase. It may include BDDs, tests, static checks, accessibility checks, usability review, UI standards review, deployment checks, data checks, or other project-relevant evidence.
 
-The second validation is not a blind rerun. It must be independently designed and value-added. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate. Rerunning the same exact deterministic test set counts only when it can expose nondeterminism, environment sensitivity, external dependency instability, or a known flaky path, and the reason must be recorded. If no credible second-pass signal exists, record `second_validation_no_signal` instead of spending time on ceremony.
+The second validation is not a blind rerun. For meaningful user-facing or mission-critical work, it is a required third-person review of the result. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate, with special attention to usability and mission fit. Rerunning the same exact deterministic test set counts only when it can expose nondeterminism, environment sensitivity, external dependency instability, concurrency/timing behavior, or a known flaky path, and the reason must be recorded.
+
+Every Second Validation Review records whether it added value:
+
+- new findings
+- decisions changed
+- coverage added
+- no new findings
+
+If repeated second reviews add no findings, no decision changes, and no coverage, tune the second-review strategy and reevaluate its value. Do not remove the second review by default; improve the reviewer angle first.
 
 ### Just-In-Time Learning
 
@@ -160,7 +169,7 @@ For production-deployed projects, production must be traceable to the submitted 
 2. For a new project, run `prompts/new-project-generation0-bootstrap.prompt.md`.
 3. Define the project Validation Strategy with `prompts/project-validation-strategy-generation0.prompt.md` and `templates/validation-strategy.template.json`.
 4. Load relevant context packs and issue signatures before implementation.
-5. Validate with the project-specific Validation Gate, then make the Second Validation Decision.
+5. Validate with the project-specific Validation Gate, then run the Second Validation Review.
 6. Submit meaningful code changes to GitHub or record the blocker.
 7. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
 8. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.

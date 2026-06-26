@@ -12,18 +12,20 @@ Answer:
 2. What artifact profiles were touched?
 3. What validation ran?
 4. Did the Validation Gate pass or fail?
-5. Did we discover a reusable issue signature?
-6. Does a central context pack need to be updated?
-7. Does a validator need to be created or improved?
-8. Is this a skill update candidate?
-9. Is this a blog, book, or content seed?
-10. Are downstream repos affected immediately?
-11. Should this lesson apply just-in-time to future generations?
-12. What was written to `.mde/outbox`?
-13. What should central `mde` import?
-14. Were meaningful code/config/deploy changes committed and pushed to GitHub? Include branch and commit SHA, or record the blocker.
-15. If the project is production-deployed, is `main` in sync with deployed production code? Include deployed commit/source, or record the approved staged-release exception/blocker.
-16. Did this session avoid modifying sibling repositories? If any downstream repo needs changes, name the required target-repo Codex session.
+5. Did the Second Validation Review run from an independent third-person perspective?
+6. What value did the Second Validation Review add: new findings, decisions changed, coverage added, or no new findings?
+7. Did we discover a reusable issue signature?
+8. Does a central context pack need to be updated?
+9. Does a validator need to be created or improved?
+10. Is this a skill update candidate?
+11. Is this a blog, book, or content seed?
+12. Are downstream repos affected immediately?
+13. Should this lesson apply just-in-time to future generations?
+14. What was written to `.mde/outbox`?
+15. What should central `mde` import?
+16. Were meaningful code/config/deploy changes committed and pushed to GitHub? Include branch and commit SHA, or record the blocker.
+17. If the project is production-deployed, is `main` in sync with deployed production code? Include deployed commit/source, or record the approved staged-release exception/blocker.
+18. Did this session avoid modifying sibling repositories? If any downstream repo needs changes, name the required target-repo Codex session.
 
 If a reusable lesson was discovered, record it in `.mde/outbox/lessons.jsonl`.
 If a new issue signature was discovered, record it in `.mde/outbox/impacts.jsonl` or a suitable outbox record.

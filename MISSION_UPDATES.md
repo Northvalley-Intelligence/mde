@@ -12,7 +12,7 @@
 - Added existing-MDE open-session sync so already-MDE projects are not re-adopted or restarted.
 - Added just-in-time reusable learning through context packs, issue signatures, and validator candidates.
 - Added Generation 0 project-specific Validation Strategy discipline.
-- Recorded that Quality Gate is deprecated as standalone terminology; phase exit uses a project-specific Validation Gate plus a Second Validation Decision.
+- Recorded that Quality Gate is deprecated as standalone terminology; phase exit uses a project-specific Validation Gate plus a Second Validation Review.
 
 ## 2026-06-14
 
@@ -34,4 +34,4 @@
 
 ## 2026-06-26
 
-- Tightened validation discipline: the Second Validation Decision must add independent signal, usually by generating different scenarios, checks, data, roles, environments, or validator angles. A same-test rerun counts only for nondeterminism, environment sensitivity, external dependency instability, concurrency/timing risk, or known flaky paths; otherwise record no second-pass signal instead of running ceremony.
+- Tightened validation discipline: the Second Validation Review must act like an independent third-person reviewer for meaningful user-facing or mission-critical work. It should look for usability, mission-fit, role, workflow, edge-case, data-shape, environment, or integration problems the first gate may have missed. Track whether each review found new issues, changed decisions, added coverage, or found no new issues so MDE can tune and reevaluate its value.
