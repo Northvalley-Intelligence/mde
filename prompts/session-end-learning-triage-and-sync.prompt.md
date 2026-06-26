@@ -12,8 +12,8 @@ Answer:
 2. What artifact profiles were touched?
 3. What validation ran?
 4. Did the Validation Gate pass or fail?
-5. Did the Second Validation Review run from an independent third-person perspective?
-6. What value did the Second Validation Review add: new findings, decisions changed, coverage added, or no new findings?
+5. Did the Third-Person Validation Gate run when the work was meaningful, user-facing, or mission-critical?
+6. What was the Third-Person Validation Gate outcome and value added: new findings, decisions changed, coverage added, or no new findings?
 7. Did we discover a reusable issue signature?
 8. Does a central context pack need to be updated?
 9. Does a validator need to be created or improved?

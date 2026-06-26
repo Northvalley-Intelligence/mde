@@ -1,10 +1,10 @@
-# Second Validation Review
+# Third-Person Validation Gate
 
-Purpose: make the second validation add a third-person reviewer perspective instead of repeating the first gate.
+Purpose: make the post-primary validation a distinct gate that adds a third-person user and mission perspective instead of repeating the first gate.
 
-Use this for meaningful user-facing or mission-critical work after the first project-specific Validation Gate passes.
+Use this for meaningful user-facing or mission-critical work after the Primary Validation Gate passes.
 
-## Reviewer Stance
+## Gate Stance
 
 The reviewer should act as if they did not build the change.
 
@@ -21,7 +21,7 @@ Ask:
 
 ## Different Signal
 
-Prefer a different validation angle from the first gate:
+Prefer a different validation angle from the Primary Validation Gate:
 
 - different user role
 - different data shape
@@ -43,26 +43,28 @@ Rerun the same exact deterministic test set only when the risk is:
 
 Record that reason explicitly.
 
-## Value Tracking
+## Outcome And Value Tracking
 
-Every Second Validation Review must record:
+Every Third-Person Validation Gate must record:
 
+- gate outcome: `pass`, `fail`, `accepted_with_findings`, or `deferred_with_reason`
 - reviewer perspective used
 - different signal attempted
 - new findings count by severity
 - decisions changed
 - coverage added
-- whether product code changed after the review
-- final outcome: `new_findings`, `decision_changed`, `coverage_added`, or `no_new_findings`
+- whether product code changed after the gate
+- final value outcome: `new_findings`, `decision_changed`, `coverage_added`, or `no_new_findings`
 
-If the review finds no new issues, record `no_new_findings`; do not call it a failure.
+If the gate finds no new issues, record `no_new_findings`; do not call it a failure.
 
-If five consecutive relevant Second Validation Reviews add no findings, no decision changes, and no coverage, tune the second-review checklist or validator. Do not remove the review by default.
+If five consecutive relevant Third-Person Validation Gates add no findings, no decision changes, and no coverage, tune the gate checklist or validator. Do not remove the gate by default.
 
 ## Reporting Shape
 
 Keep reports concise:
 
-- Second validation: third-person usability/mission review
+- Third-person gate: usability/mission review
+- Outcome: pass, fail, accepted with findings, or deferred with reason
 - Value added: new finding, decision changed, coverage added, or no new findings
 - Follow-up: fixed, accepted, deferred, or tune validator

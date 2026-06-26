@@ -46,11 +46,22 @@
       "run_policy": "release_only | before_phase_exit | on_affected_changes | manual"
     }
   ],
-  "second_validation_review": {
-    "description": "Phase exit requires a Validation Gate plus a Second Validation Review. For meaningful user-facing or mission-critical work, the second validation is a required independent third-person review.",
+  "validation_gates": {
+    "description": "Meaningful user-facing or mission-critical work uses a Primary Validation Gate plus a Third-Person Validation Gate.",
+    "primary_validation_gate": {
+      "purpose": "Proves the implementation works functionally and technically.",
+      "result_values": ["pass", "fail", "blocked"]
+    },
+    "third_person_validation_gate": {
+      "purpose": "Independently reviews the result from the user's point of view for usability, mission fit, role fit, workflow fit, edge cases, data shape, environment, and integration risks.",
+      "required_for_user_facing_or_mission_critical_work": true,
+      "result_values": ["pass", "fail", "accepted_with_findings", "deferred_with_reason"]
+    }
+  },
+  "third_person_validation_gate": {
+    "description": "The Third-Person Validation Gate is a distinct gate, not a second pass or duplicate rerun.",
     "independent_design_required": true,
-    "third_person_review_required_for_user_facing_or_mission_critical_work": true,
-    "primary_review_focus": ["usability", "mission_fit", "role_fit", "workflow_fit"],
+    "primary_focus": ["usability", "mission_fit", "role_fit", "workflow_fit"],
     "different_tests_or_validation_angles_preferred": true,
     "different_signal_examples": [
       "different user role",
@@ -69,20 +80,23 @@
       "known flaky paths",
       "concurrency or timing risk"
     ],
+    "gate_outcome_required": true,
+    "gate_outcome_values": ["pass", "fail", "accepted_with_findings", "deferred_with_reason"],
     "value_add_tracking_required": true,
     "value_add_fields": [
+      "gate_outcome",
       "reviewer_perspective",
       "different_signal_attempted",
       "new_findings_by_severity",
       "decisions_changed",
       "coverage_added",
-      "product_code_changed_after_review",
-      "final_outcome"
+      "product_code_changed_after_gate",
+      "final_value_outcome"
     ],
-    "final_outcome_values": ["new_findings", "decision_changed", "coverage_added", "no_new_findings"],
+    "final_value_outcome_values": ["new_findings", "decision_changed", "coverage_added", "no_new_findings"],
     "reevaluate_after_consecutive_no_signal_reviews": 5,
-    "reevaluation_default_action": "tune_second_review_strategy_before_removing",
-    "rerun_required": [
+    "reevaluation_default_action": "tune_third_person_gate_strategy_before_removing",
+    "must_cover_when_relevant": [
       "all critical validations",
       "validations that failed in the first run",
       "validations affected by code or artifact changes",

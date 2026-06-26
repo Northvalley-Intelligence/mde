@@ -83,7 +83,7 @@ Repository governance:
 - A Codex session may write only inside the project repo that is its session home.
 - Related repos may be read for context, but not modified from this session.
 - Meaningful code/config/deploy changes should be committed and pushed before session end or after validation readiness.
-- Meaningful user-facing or mission-critical work should include a Second Validation Review from an independent third-person perspective, with value-add recorded as new findings, decisions changed, coverage added, or no new findings.
+- Meaningful user-facing or mission-critical work should include a Third-Person Validation Gate, with outcome and value-add recorded as new findings, decisions changed, coverage added, or no new findings.
 - Production-deployed projects must record the deployed commit/source and keep `main` in sync with production unless an approved staged-release exception is documented.
 - MDE agent-to-user communication should summarize current action, why it matters, mission impact, validation, risks, short files/components, short commits/deployment status, and next actions instead of pasting raw code or diffs.
 - When output is constrained, preserve blockers/decisions, current action, mission impact, validation, short GitHub/deploy status, short touched files/components, and next action before implementation detail.

@@ -4,8 +4,8 @@ Every meaningful session should ask:
 
 - What changed?
 - What validation ran?
-- Did the Second Validation Review run from an independent third-person perspective?
-- What value did the Second Validation Review add: new findings, decisions changed, coverage added, or no new findings?
+- Did the Third-Person Validation Gate run when the work was meaningful, user-facing, or mission-critical?
+- What was the Third-Person Validation Gate outcome and value added: new findings, decisions changed, coverage added, or no new findings?
 - What reusable lesson or issue signature was discovered?
 - What context pack or validator should update?
 - What content seed or skill candidate emerged?

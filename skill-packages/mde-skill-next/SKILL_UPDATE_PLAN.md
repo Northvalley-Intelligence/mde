@@ -17,6 +17,6 @@ Promote these behaviors into the MDE skill:
 13. GitHub submission and production parity gates.
 14. Project repository governance sync.
 15. Summary-first agent-to-user communication.
-16. Third-person Second Validation Review with value-add tracking.
+16. Third-Person Validation Gate with value-add tracking.
 
 Do not promote static project templates as the primary bootstrap mechanism. Use the skill to load current central MDE knowledge.

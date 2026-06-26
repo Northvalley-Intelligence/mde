@@ -20,4 +20,4 @@ Required outputs:
 
 Validation categories are reusable. Validation tools are project-specific.
 
-Phase exit uses a project-specific Validation Gate plus a Second Validation Review. For meaningful user-facing or mission-critical work, the second validation is a required third-person review that should add usability, mission-fit, role, edge-case, data, environment, or integration signal beyond the first gate.
+Phase readiness uses project-specific validation gates. For meaningful user-facing or mission-critical work, use a Primary Validation Gate plus a Third-Person Validation Gate. The third-person gate should add usability, mission-fit, role, edge-case, data, environment, or integration signal beyond the primary gate.

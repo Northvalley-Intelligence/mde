@@ -2,20 +2,29 @@
 
 Quality Gate is not a standalone phase gate.
 
-Phase exit requires a project-specific Validation Gate plus a Second Validation Review. BDD is part of Functional Validation, not the whole gate.
+Phase readiness for meaningful user-facing or mission-critical work requires a Primary Validation Gate plus a Third-Person Validation Gate. BDD is part of Functional Validation, not the whole gate.
 
-The second validation is not a blind rerun. For meaningful user-facing or mission-critical work, it is a required independent third-person review of the result. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate, with special attention to usability and mission fit.
+The Primary Validation Gate proves the implementation works functionally and technically.
+
+The Third-Person Validation Gate is a separate gate, not a second pass. It independently reviews the result from the user's point of view, with special attention to usability, mission fit, role fit, workflow fit, edge cases, data shape, environment, and integration boundaries. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the Primary Validation Gate.
 
 Rerunning the same exact deterministic checks counts only when repetition can expose nondeterminism, environment sensitivity, external dependency instability, concurrency/timing issues, or a known flaky path. Record the reason.
 
-Every Second Validation Review must record value added:
+Every Third-Person Validation Gate must record outcome:
+
+- pass
+- fail
+- accepted with findings
+- deferred with reason
+
+It must also record value added:
 
 - new findings
 - decisions changed
 - coverage added
 - no new findings
 
-If repeated second reviews add no findings, no decision changes, and no coverage, tune the second-review strategy and reevaluate its value. Do not remove the second review by default; improve the reviewer angle first.
+If repeated third-person gates add no findings, no decision changes, and no coverage, tune the gate strategy and reevaluate its value. Do not remove the gate by default; improve the reviewer angle first.
 
 After validation readiness, run Repository Governance checks before claiming the phase is complete:
 

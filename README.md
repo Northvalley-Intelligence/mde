@@ -93,28 +93,37 @@ Core validation categories:
 
 BDD belongs inside Functional Validation. It is important, but it is not the whole readiness model.
 
-### Validation Gate
+### Validation Gates
 
 `Quality Gate` is deprecated as a standalone concept.
 
-Phase exit is:
+Phase readiness for meaningful user-facing or mission-critical work is:
 
 ```text
-Validation Gate passes, then the Second Validation Review independently checks mission fit and usability
+Primary Validation Gate + Third-Person Validation Gate
 ```
 
-A Validation Gate is the project-specific validation run selected for the current phase. It may include BDDs, tests, static checks, accessibility checks, usability review, UI standards review, deployment checks, data checks, or other project-relevant evidence.
+The Primary Validation Gate proves the implementation works functionally and technically. It may include BDDs, tests, static checks, accessibility checks, deployment checks, data checks, or other project-relevant evidence.
 
-The second validation is not a blind rerun. For meaningful user-facing or mission-critical work, it is a required third-person review of the result. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the first gate, with special attention to usability and mission fit. Rerunning the same exact deterministic test set counts only when it can expose nondeterminism, environment sensitivity, external dependency instability, concurrency/timing behavior, or a known flaky path, and the reason must be recorded.
+The Third-Person Validation Gate is a separate gate, not a second pass. It independently reviews the result from the user's point of view, with special attention to usability, mission fit, role fit, workflow fit, edge cases, data shape, environment, and integration boundaries. It should usually generate different scenarios, checks, data, roles, environments, or validator angles from the Primary Validation Gate.
 
-Every Second Validation Review records whether it added value:
+Rerunning the same exact deterministic test set counts only when it can expose nondeterminism, environment sensitivity, external dependency instability, concurrency/timing behavior, or a known flaky path, and the reason must be recorded.
+
+Every Third-Person Validation Gate records its outcome:
+
+- pass
+- fail
+- accepted with findings
+- deferred with reason
+
+It also records value added:
 
 - new findings
 - decisions changed
 - coverage added
 - no new findings
 
-If repeated second reviews add no findings, no decision changes, and no coverage, tune the second-review strategy and reevaluate its value. Do not remove the second review by default; improve the reviewer angle first.
+If repeated third-person gates add no findings, no decision changes, and no coverage, tune the gate strategy and reevaluate its value. Do not remove the gate by default; improve the reviewer angle first.
 
 ### Just-In-Time Learning
 
@@ -169,7 +178,7 @@ For production-deployed projects, production must be traceable to the submitted 
 2. For a new project, run `prompts/new-project-generation0-bootstrap.prompt.md`.
 3. Define the project Validation Strategy with `prompts/project-validation-strategy-generation0.prompt.md` and `templates/validation-strategy.template.json`.
 4. Load relevant context packs and issue signatures before implementation.
-5. Validate with the project-specific Validation Gate, then run the Second Validation Review.
+5. Validate with the Primary Validation Gate, then run the Third-Person Validation Gate when the work is meaningful, user-facing, or mission-critical.
 6. Submit meaningful code changes to GitHub or record the blocker.
 7. End meaningful sessions with `prompts/session-end-learning-triage-and-sync.prompt.md`.
 8. Promote central-worthy learning with `prompts/central-import-project-outbox.prompt.md`.
