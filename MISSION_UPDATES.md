@@ -35,3 +35,7 @@
 ## 2026-06-26
 
 - Tightened validation discipline: meaningful user-facing or mission-critical work uses a Primary Validation Gate plus a Third-Person Validation Gate. The Third-Person Validation Gate independently reviews usability, mission-fit, role, workflow, edge-case, data-shape, environment, or integration risks beyond the primary gate. Track whether each third-person gate found new issues, changed decisions, added coverage, or found no new issues so MDE can tune and reevaluate its value.
+
+## 2026-06-27
+
+- Promoted CJ Welding client-review lessons into reusable client-facing content integrity guidance: generated websites, flyers, reports, proposals, and business PDFs should validate that visible copy does not include process/meta notes, fake proof, unsupported claims, or unresolved client inputs presented as fact.

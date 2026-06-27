@@ -86,6 +86,23 @@
       ]
     },
     {
+      "category": "Usability",
+      "required": true,
+      "priority": "High",
+      "tools_or_methods": [
+        "client-facing content integrity review",
+        "validators/client-facing-content/content-integrity.md"
+      ],
+      "reason": "Generated website launch packs must prevent process/meta copy, fake proof, unsupported claims, and unresolved client inputs from reaching client review or publication.",
+      "required_evidence": [
+        "generated prompt requires visible copy to be customer-facing rather than implementation-process language",
+        "sample articles, fake case studies, invented testimonials, and placeholder proof are excluded from public delivery",
+        "proof assets require source evidence, permission, and attribution when applicable",
+        "operational facts are validated against source material",
+        "missing proof, photos, testimonials, or exact details are listed as pending client inputs"
+      ]
+    },
+    {
       "category": "Technical",
       "required": true,
       "priority": "Critical",
@@ -197,6 +214,7 @@
     "privacy/confidentiality review",
     "assessment evidence traceability review",
     "SEO/AEO service-area coverage review",
+    "client-facing content integrity review",
     "Northvalley repo and Cloudflare deployment checklist",
     "main/prod branch sync requirement review",
     "client-safe artifact review"
@@ -221,6 +239,10 @@
     {
       "fixture": "client-with-prod-branch-deploy-policy",
       "purpose": "Prove the generator includes the main/prod sync check before deployment."
+    },
+    {
+      "fixture": "client-review-flags-process-copy-and-placeholder-proof",
+      "purpose": "Prove the generator requires content integrity checks for visible copy, proof assets, operational claims, and pending client inputs."
     }
   ],
   "skipped_validations": [],

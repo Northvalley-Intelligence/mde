@@ -165,6 +165,15 @@ Generated client website prompts should create or request GitHub Actions similar
 - Validate accessibility, content clarity, mobile behavior, forms, SEO/AEO structure, and deployment before client delivery.
 - Do not invent reviews, credentials, licenses, service guarantees, locations, or project examples.
 
+## Client-Facing Content Integrity
+
+- Public/client copy must read like customer-facing business language, not implementation notes. Remove AI-process, SEO-process, assessment-process, template-purpose, and "this page should..." explanations from visible copy.
+- Do not publish sample articles, fake case studies, fake testimonials, or placeholder project examples as real content. Remove them from public delivery or mark the required client input as pending.
+- Treat testimonials, review snippets, before/after examples, and project photos as proof assets. Publish them only when source evidence, permission, and attribution requirements are clear.
+- Preserve exact operational facts from the client source of truth, including services offered or not offered, directions, hours, delivery, materials, guarantees, credentials, locations, quote expectations, and in-person evaluation limits.
+- When proof assets are thin or repetitive, record the content gap instead of overusing near-duplicate photos or generic copy.
+- Add `validators/client-facing-content/content-integrity.md` to the project validation strategy for client websites and public content.
+
 ## Optional Integrations
 
 Only include these when the client mission requires them and required secrets/ownership are available:

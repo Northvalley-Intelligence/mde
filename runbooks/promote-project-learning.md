@@ -33,3 +33,9 @@ Voucher formatting bug:
 - Validator candidate: PDF or print layout validation.
 - Content seed: printed business artifacts need validation, not just visual review.
 
+CJ Welding client review:
+
+- Project fix: remove process/meta copy, fake sample content, unsupported claims, and unapproved proof from the client website.
+- MDE lesson: public/client-facing artifacts need content integrity validation before review or publication.
+- Validator candidate: client-facing content integrity for websites, flyers, reports, proposals, and business PDFs.
+- Content seed: AI-generated deliverables can look polished while leaking internal process language or placeholder proof.

@@ -18,5 +18,6 @@ Promote these behaviors into the MDE skill:
 14. Project repository governance sync.
 15. Summary-first agent-to-user communication.
 16. Third-Person Validation Gate with value-add tracking.
+17. Client-facing content integrity for websites, public content, flyers, reports, and business PDFs.
 
 Do not promote static project templates as the primary bootstrap mechanism. Use the skill to load current central MDE knowledge.

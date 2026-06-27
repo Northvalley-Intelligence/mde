@@ -59,6 +59,7 @@ Validation Needs:
 - what UI standards apply?
 - what mission coverage is required?
 - what external validators fit this project?
+- if the artifact is public or client-facing, how will content integrity be checked so process notes, placeholder proof, invented claims, and unresolved client inputs do not reach review or publication?
 
 Tool Selection:
 
@@ -68,4 +69,3 @@ Tool Selection:
 - what validations are too expensive for every generation but required before release?
 
 Create `.mde/validation-strategy.json` using `templates/validation-strategy.template.json`.
-

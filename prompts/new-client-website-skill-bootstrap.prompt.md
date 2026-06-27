@@ -20,8 +20,9 @@ Tasks:
 9. Generate website build mission.
 10. Generate technical implementation brief.
 11. Generate project-specific validation strategy.
-12. Generate initial task graph.
-13. End with local outbox event and learning triage.
+12. Include client-facing content integrity validation: no process/meta copy, fake proof, invented claims, or unresolved client inputs presented as fact.
+13. Generate initial task graph.
+14. End with local outbox event and learning triage.
 
 Client website repo should contain:
 
@@ -39,4 +40,3 @@ docs/launch-validation-plan.md
 ```
 
 Keep the repo client-safe. Central MDE owns reusable learning and internal strategy.
-

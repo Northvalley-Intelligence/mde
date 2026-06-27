@@ -23,4 +23,4 @@ Checks:
 - Headers and footers do not overlap body content.
 - Page breaks do not split important content awkwardly.
 - Generated PDF is validated in PDF/print mode, not only browser view.
-
+- Client-facing PDFs also pass content integrity review: no process/meta copy, no fake proof, no unsupported claims, and no unresolved client input presented as fact.

@@ -13,6 +13,7 @@ Initial candidates:
 
 Documented validator candidates:
 
+- `validators/client-facing-content/content-integrity.md`
 - `validators/pdf/pdf-margin-safety.md`
 - `validators/usability/form-data-preservation.md`
 - `validators/ui-standards/affordance-integrity.md`

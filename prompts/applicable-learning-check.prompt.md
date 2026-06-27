@@ -21,9 +21,10 @@ Ask:
 6. Are any downstream projects affected?
 7. Should this generation update local validation strategy?
 
+For public/client-facing websites, proposals, reports, flyers, sales PDFs, or business documents, include the client-facing content integrity validator when generated copy, proof, service claims, gallery captions, testimonials, directions, quote guidance, or client facts change.
+
 Do not apply unrelated lessons.
 Do not automatically modify other repos.
 Do not run portfolio-wide remediation unless explicitly requested.
 
 Example: if a prior invoice repo generation discovered PDF text overflow into margins and recorded `PDF_TEXT_OVERFLOW_MARGIN`, then a future proposal repo generation that touches PDF generation should load the PDF generation context pack and include PDF margin safety checks. It should not automatically regenerate every proposal PDF at the time the invoice bug is fixed.
-
