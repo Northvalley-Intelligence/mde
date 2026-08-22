@@ -392,8 +392,12 @@ must make the reviewer's category sentence impossible, not just plausible-lookin
 - **"Deploy green" is not "live correct" — even beyond the propagation window.** On northvalleyintel.com
   (2026-08-22) a squash-merged PR showed a successful Pages deploy, the merged source verifiably contained
   the new output, yet live `/mcp` still served the OLD tool output hours later — a build-pipeline/edge
-  defect, not propagation. Treat the live diff itself as the acceptance test for anything you'll resubmit
-  to a reviewer.
+  defect, not propagation. Root cause when finally run to ground: the custom domain's CNAME pointed at a
+  DIFFERENT, stale Pages project (`<name>-43m.pages.dev`) left over from an earlier setup — CI deployed to
+  the right project for weeks while the domain never looked at it. When live and pages.dev disagree, diff
+  the DNS target against the project CI deploys to before suspecting the build; and delete superseded
+  Pages projects instead of leaving them attached to domains. Treat the live diff itself as the acceptance
+  test for anything you'll resubmit to a reviewer.
 - **Give every deploy workflow `workflow_dispatch`.** cloudflare-pages.yml without it means the only
   redeploy lever is a fresh push (or clicking around the dashboard) — exactly when you need a clean rebuild
   to rule the pipeline out. Add the trigger when you first touch the workflow, not when you're stuck.
