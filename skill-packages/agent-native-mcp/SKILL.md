@@ -361,6 +361,13 @@ that isn't required for the user's request."** Root causes and the shipped fixes
   produced a stale live endpoint here (see gotcha below); resubmitting on source-level evidence would have
   burned the appeal on an infrastructure defect.
 
+**Resubmitting after a rejection:** open the app in the portal and click **Edit — not "View plugin"**. The
+View page is read-only and Scan Tools renders empty/disabled there, which reads as a broken portal or a
+need to re-upload files; it isn't. In Edit mode, re-run Scan Tools (so the portal re-reads the FIXED live
+schema), keep test cases unless an expected_output referenced removed behavior, write real release notes
+describing the remediation, and re-attest. No manifest re-upload is needed when the tool set and
+annotations are unchanged — verify that with a diff against live tools/list, not by memory.
+
 **Both rejections arrived as email with no field-level pointers** ("please see the details below" + a
 category sentence). Reproduce the violation yourself against the live endpoint before fixing — the fix
 must make the reviewer's category sentence impossible, not just plausible-looking.
