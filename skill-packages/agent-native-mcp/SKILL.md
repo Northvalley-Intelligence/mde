@@ -3,11 +3,17 @@ name: agent-native-mcp
 description: Make a website/service agent-native — build a Model Context Protocol (MCP) server that lets AI assistants (Claude, ChatGPT, Gemini) use it, then get it listed in the assistant directories. Use when adding an MCP booking/lead/tools front door onto an existing web app (especially Next.js on Cloudflare Workers/OpenNext), reusing the app's existing intake/notification/logic, and when preparing or walking a client through the ChatGPT (OpenAI) or Claude connector-directory submission. Also covers Google OAuth branding verification when the app uses Google scopes.
 metadata:
   source: medinaclean.com GEN-001 (agent-native MCP lane) + GEN-002 directory submission, 2026-08;
-    northvalleyintel.com second implementation (Cloudflare Pages Functions variant), 2026-08-06
+    northvalleyintel.com second implementation (Cloudflare Pages Functions variant), 2026-08-06;
+    horizonpetwastesolutions.com Codex/ChatGPT Agent Plugins package (PR #20, handoff 23), 2026-09-30
   status: battle-tested on two independent stacks (live MCP booking in Claude + ChatGPT;
     OpenAI directory submitted for medinaclean.com; northvalleyintel.com/mcp live);
-    both first OpenAI submissions REJECTED 2026-08-22 — causes diagnosed, fixes shipped,
-    lessons folded into Part 2 and Part 9
+    first two OpenAI submissions REJECTED 2026-08-22 — causes diagnosed, fixes shipped,
+    lessons folded into Part 2 and Part 9; northvalleyintel.com v1.0.2 REJECTED again 2026-09-19
+    (test-case fidelity across web+mobile, explicit annotation justifications, input minimization,
+    sensitive-data solicitation) — folded into Part 9 as a pre-submission checklist; Part 7a added
+    2026-09-30 for the current Agent Plugins ZIP/portal format, alongside the Aug
+    chatgpt-app-submission.json flow, kept side-by-side until a package clears the live portal
+    and Ferosh reports which format it actually asked for, 2026-09-30
 ---
 
 # Agent-Native MCP
@@ -309,6 +315,85 @@ connector; the booking's returned request-id is undeniable proof). Host on YouTu
 URL. If tool-call chips don't render in the UI, the specific outputs (exact estimate, request id) are the
 proof — reviewers know surfacing varies.
 
+## Part 7a — Plugin package (current portal, 2026-09)
+
+Docs read first-hand 2026-09-30: `https://developers.openai.com/codex/plugins/build`,
+`https://developers.openai.com/plugins/build/plugins`, `https://developers.openai.com/plugins/build/mcp-server`,
+`https://developers.openai.com/plugins/build/skills`, `https://developers.openai.com/plugins/deploy/submission`,
+`https://developers.openai.com/plugins/plugin-guidelines`. Built and merged once
+(horizonpetwastesolutions.com, PR #20, handoff 23): `plugin/plugin.json`, `plugin/mcp.json`, `plugin/assets/`,
+`plugin/skills/horizon-quote/SKILL.md`, validated by `tests/codex-plugin.test.ts`.
+
+This is a **second, newer manifest format** ("Agent Plugins" — a portable schema hosted at `agent-plugins.org`,
+shared between Codex CLI/IDE and ChatGPT) alongside the `chatgpt-app-submission.json` manifest in Part 7.
+**The current submission docs do not mention `chatgpt-app-submission.json` anywhere** — that's silence, not an
+explicit "deprecated." Keep Part 7's manifest as a **fallback only**, until a package has actually gone through
+the live portal and Ferosh reports which format it asked for/accepted; do not delete either side of this until
+then.
+
+**Package layout — root-level, no wrapping folder.** Zip the plugin root's *contents* directly, not a parent
+folder containing them: every path inside the manifests is `./`-relative to that root (e.g. `./assets/icon.png`,
+`./skills/get-started/SKILL.md`), which only resolves if those files sit at the zip root.
+- `plugin.json` — required.
+- `mcp.json` — present when the package bundles MCP servers.
+- `skills/<name>/SKILL.md` — present when the package includes skills.
+- `assets/` — icons/screenshots referenced by `./`-relative paths.
+
+**`plugin.json` fields:**
+- `$schema`: `https://agent-plugins.org/schemas/1.0.0/plugin.schema.json`.
+- `name` — stable, kebab-case; the plugin identifier/component namespace, and must match the `mcpServers` key
+  in `mcp.json`.
+- `version` (semver), `description`, `author` {name, email, url}, `homepage`, `repository`, `license`,
+  `keywords`.
+- `extensions["com.openai"].interface` — **the key is the literal string `"com.openai"`** (a namespaced
+  identifier, like `"publisher.extension"`), **NOT** a nested `{com: {openai: {...}}}` object — the single
+  easiest field to mis-code, and it fails silently (valid JSON, wrong shape) rather than throwing a validator
+  error. Under `.interface`: `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`,
+  `capabilities` (e.g. `["Read","Write"]`), `websiteURL`, `privacyPolicyURL`, `termsOfServiceURL`,
+  `defaultPrompt` (array of starter prompts), `brandColor`, `composerIcon`, `logo` (both `./`-relative into
+  `assets/`), `screenshots` (array, may be empty).
+- Keep `plugin.json`, `mcp.json`, and `skills/` at the plugin root; every path under `extensions.com.openai` is
+  relative to that root and starts with `./`.
+
+**`mcp.json` fields:**
+- `$schema`: `https://agent-plugins.org/schemas/1.0.0/mcp.schema.json`.
+- `mcpServers.<name>`: `{type: "streamable-http", url}` — one entry, `<name>` matching `plugin.json`'s `name`,
+  `url` the live `/mcp` endpoint.
+
+**`skills/<name>/SKILL.md` frontmatter:** YAML frontmatter with `name` (matches the folder) and a non-empty
+`description` naming when an assistant should reach for the skill; the body should name every live tool at
+least once and restate the trust invariant (request, never confirm) for any write tool.
+
+**Portal flow** (`https://developers.openai.com/plugins/deploy/submission`, read 2026-09-30) — same
+`platform.openai.com/plugins` portal as Part 7, different upload:
+1. Confirm org/project ownership + developer identity verification (Gate 1, unchanged from Part 7).
+2. Plugins dashboard → **Upload new or existing plugin** → choose verified identity → **Upload plugin** →
+   choose the **ZIP file**.
+3. Automated validation of the package; fix and re-upload on error.
+4. Review the **Metadata & Skills** findings.
+5. **Connect/scan the MCP server** (same idea as Part 7's Scan Tools — the portal reads the live server's
+   annotations, not the manifest).
+6. Complete **Review information** (test cases, credentials, video walkthrough, release notes).
+7. Select the draft → **Submit for review** → confirm policy attestations.
+8. Track the decision by email; **Publish** once approved.
+
+**Validator test pattern** (`tests/codex-plugin.test.ts`, horizonpetwastesolutions.com): a static contract check
+mirroring Part 3's philosophy — assert the manifest shapes without a network call, then gate a live check
+behind an opt-in env var:
+- `plugin.json`: `$schema` literal match; `name` kebab-case and equal to the live server's name; `version`
+  matches semver; `description` non-empty; `extensions["com.openai"].interface` carries every required field
+  non-empty; `websiteURL`/`privacyPolicyURL`/`termsOfServiceURL` equal the live site's own URLs (`/privacy`,
+  `/terms`) — not hand-typed copies that can drift; `composerIcon`/`logo`/each `screenshots` entry resolve to a
+  real file under `assets/`.
+- `mcp.json`: `$schema` literal match; exactly one `streamable-http` server; its `url` equals the live `/mcp`
+  endpoint; its key equals `plugin.json`'s `name`.
+- `skills/<name>/SKILL.md`: file exists; frontmatter has `name` + non-empty `description`; body mentions every
+  live tool by name.
+- Package shape: `plugin.json`, `mcp.json`, `assets/`, `skills/` all exist at the plugin root.
+- Opt-in live check (env-var gated, not run by default in CI): fetch both `$schema` URLs at `agent-plugins.org`
+  and confirm 200 — presence/reachability only, not a full JSON Schema validation; print a skip notice when the
+  env var is unset so a green run is never mistaken for a live-schema proof.
+
 ## Part 8 — Submit to the Claude / Anthropic connector directory
 
 - Portal: **claude.ai admin settings → directory submissions** — requires a **Team or Enterprise** org
@@ -360,6 +445,25 @@ that isn't required for the user's request."** Root causes and the shipped fixes
   source, not a preview: the exact URL the reviewer will hit. Green deploy + correct merged source still
   produced a stale live endpoint here (see gotcha below); resubmitting on source-level evidence would have
   burned the appeal on an infrastructure defect.
+
+**Rejection 3 — northvalleyintel.com v1.0.2, 2026-09-19: four reasons, none new individually — run this
+checklist before every (re)submission.** The email cited: test cases didn't produce correct results
+consistently on both ChatGPT web AND mobile; annotations must be explicit `true`/`false` (never null) with a
+justification tied to the tool's actual behavior; tools request input data that's overly broad, unnecessary,
+or includes the full conversation history; the app solicits sensitive personal data (health, biometric, SSN,
+payment-card). Treat all four as a pre-submission gate, not a one-time fix:
+- [ ] Re-run every submitted test case against the **live** endpoint from **both** ChatGPT web and ChatGPT
+  mobile. Rejection 2's rule below ("re-run against the live endpoint") was proven web-only; mobile is a
+  separate client/session surface and can diverge from web on the same server.
+- [ ] Every tool's three hints (`readOnlyHint`/`destructiveHint`/`openWorldHint`) are explicitly `true` or
+  `false` — never omitted or null — diffed against the live `tools/list`, each with a plain-English
+  justification describing that tool's *actual* behavior, not a template sentence copied across tools.
+- [ ] Every tool's `inputSchema` asks for only the fields that specific call needs. No field is shaped to
+  capture or forward the full conversation history, and no field is an unconstrained catch-all beyond what
+  Part 2's free-text minimization already requires.
+- [ ] No tool schema, description, or server instruction solicits health information, biometric data, SSNs,
+  or payment-card data — grep every field's name and description for these categories before submitting;
+  don't rely on memory of what was added months ago.
 
 **Resubmitting after a rejection:** open the app in the portal and click **Edit — not "View plugin"**. The
 View page is read-only and Scan Tools renders empty/disabled there, which reads as a broken portal or a
