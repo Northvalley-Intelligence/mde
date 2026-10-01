@@ -11,9 +11,12 @@ metadata:
     lessons folded into Part 2 and Part 9; northvalleyintel.com v1.0.2 REJECTED again 2026-09-19
     (test-case fidelity across web+mobile, explicit annotation justifications, input minimization,
     sensitive-data solicitation) — folded into Part 9 as a pre-submission checklist; Part 7a added
-    2026-09-30 for the current Agent Plugins ZIP/portal format, alongside the Aug
-    chatgpt-app-submission.json flow, kept side-by-side until a package clears the live portal
-    and Ferosh reports which format it actually asked for, 2026-09-30
+    2026-09-30 for the current Agent Plugins ZIP/portal format; horizonpetwastesolutions.com's
+    plugin.json package went through the live portal 2026-09-30 and was ACCEPTED at 21:46 after 5
+    rounds — confirms the Agent Plugins ZIP is what the portal actually asks for today (Part 7's
+    chatgpt-app-submission.json stays as a documented fallback only, unconfirmed live since medinaclean
+    and the first northvalleyintel.com submission); the 5-round message→fix history and what to check
+    BEFORE submitting are folded into Part 7a and Part 9, 2026-09-30
 ---
 
 # Agent-Native MCP
@@ -327,9 +330,25 @@ Docs read first-hand 2026-09-30: `https://developers.openai.com/codex/plugins/bu
 This is a **second, newer manifest format** ("Agent Plugins" — a portable schema hosted at `agent-plugins.org`,
 shared between Codex CLI/IDE and ChatGPT) alongside the `chatgpt-app-submission.json` manifest in Part 7.
 **The current submission docs do not mention `chatgpt-app-submission.json` anywhere** — that's silence, not an
-explicit "deprecated." Keep Part 7's manifest as a **fallback only**, until a package has actually gone through
-the live portal and Ferosh reports which format it asked for/accepted; do not delete either side of this until
-then.
+explicit "deprecated." **Confirmed 2026-09-30:** this is the live answer — the `plugin.json`/`mcp.json`/
+`skills/` ZIP is what `platform.openai.com/plugins` actually asks for and accepts today; the
+horizonpetwastesolutions.com package went through 5 rounds on this exact format and was **ACCEPTED**
+2026-09-30 21:46. Keep Part 7's `chatgpt-app-submission.json` as a **fallback reference only** (it is what
+medinaclean.com and the first northvalleyintel.com submission used, under the OLD portal) — do not start a
+new submission from it.
+
+**Valid `extensions["com.openai"].interface.category` values** (from
+`developers.openai.com/plugins/deploy/submission-errors`, confirmed live): **Productivity, Creativity,
+Developer Tools, Business & Operations, Data & Analytics, Communication, Education & Research, Security,
+Finance, Healthcare, Travel, Entertainment, Other** — Title Case exactly as listed; omitting the field also
+defaults to Other. `"Lifestyle"` and `"LIFESTYLE"` are both rejected with `"Select a valid category."` — that
+is the SCREAMING_SNAKE_CASE enum from Part 7's `chatgpt-app-submission.json` schema, which does **not**
+carry over to this dashboard's own category picker. A local service with no exact-fit category (e.g. a
+pet-waste cleanup quote tool) should use **Other** rather than force a near-fit. **The banner "We couldn't
+confirm the selected category…" is a WARNING, not one of the documented error codes** — the same
+submission-errors page states errors block submission and warnings do not; do not keep rewriting the
+listing text chasing this banner once `category` is a value from the list above and the package shows "No
+issues" — submit anyway (Horizon burned two rounds, 4 and 5, on this before confirming it was non-blocking).
 
 **Package layout — root-level, no wrapping folder.** Zip the plugin root's *contents* directly, not a parent
 folder containing them: every path inside the manifests is `./`-relative to that root (e.g. `./assets/icon.png`,
@@ -371,11 +390,41 @@ least once and restate the trust invariant (request, never confirm) for any writ
    choose the **ZIP file**.
 3. Automated validation of the package; fix and re-upload on error.
 4. Review the **Metadata & Skills** findings.
-5. **Connect/scan the MCP server** (same idea as Part 7's Scan Tools — the portal reads the live server's
-   annotations, not the manifest).
-6. Complete **Review information** (test cases, credentials, video walkthrough, release notes).
+5. **Connect/scan the MCP server** — the portal's Connect MCP server dialog issues a **domain-verification
+   challenge token**. Host it as **plain text, only the token, no JSON wrapper**, at
+   `https://<host>/.well-known/openai-apps-challenge`, with `Cache-Control: no-store`. A missing route reads
+   as `"Challenge endpoint returned HTTP 404"`. On Next.js App Router, add
+   `src/app/.well-known/openai-apps-challenge/route.ts` returning `new Response(TOKEN, {status: 200,
+   headers: {"content-type": "text/plain; charset=utf-8", "cache-control": "no-store"}})`, token in one
+   exported constant — same idea as Part 7's middleware route, just the App Router shape. `curl` and
+   byte-compare before clicking Verify (Part 7's gotcha applies unchanged). Then click **Scan
+   Tools**/**Rescan** to read the live server's annotations against the manifest (same idea as Part 7's
+   Scan Tools).
+   - **Scan results are CACHED on the portal, not re-read automatically.** After ANY server deploy —
+     including a tool rename — press **Rescan** before trusting what the MCPs tab shows. Horizon's round 5
+     re-showed a renamed tool's OLD name as a live issue for four hours after the rename had deployed; the
+     portal was still serving round 3's cached scan. Pressing Rescan re-read the live server and the issue
+     vanished with no code change. Treat "the issue came back" as "did I rescan?" before treating it as a
+     regression.
+6. Complete **Review information** — **this form is NOT prefilled from the package.** Unlike Part 7's
+   `chatgpt-app-submission.json` (which carried `test_cases`/`negative_test_cases` straight into the
+   portal), the Agent Plugins format has no manifest field for them: type in each test case by hand
+   (portal fields: Scenario / User prompt / Tool triggered / Expected output), plus negative cases. Verify
+   every `expected_output` against the LIVE server (`tools/call`, not source) before typing it in, and keep
+   a copy-paste block of all cases in the client-repo SOP so re-submission doesn't re-derive them.
 7. Select the draft → **Submit for review** → confirm policy attestations.
 8. Track the decision by email; **Publish** once approved.
+
+**Versioning:** bump `plugin.json`'s `version` on every re-upload, even a one-field fix — the portal lists
+and diffs by version, and re-uploading the same version number can read as a re-run of the already-rejected
+upload rather than a new one. Horizon went `1.0.0` → `1.0.3` across four correction rounds before
+acceptance.
+
+**Keep a round log.** When a submission needs more than one round, keep a dated message → field → fix table
+(portal message verbatim, the exact field it pointed at, what changed, which PR) in the client stream's
+SOP — not just in memory. Horizon needed 5 rounds; re-reading
+`developers.openai.com/plugins/deploy/submission-errors` BEFORE round 1 (rather than after round 2) would
+have avoided the category-casing guesses in rounds 1–2, so read that page first on every future submission.
 
 **Validator test pattern** (`tests/codex-plugin.test.ts`, horizonpetwastesolutions.com): a static contract check
 mirroring Part 3's philosophy — assert the manifest shapes without a network call, then gate a live check
@@ -410,7 +459,7 @@ behind an opt-in env var:
 
 ---
 
-## Part 9 — Passing the directory REVIEW (from two real OpenAI rejections, 2026-08-22)
+## Part 9 — Passing the directory REVIEW (real OpenAI rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com ACCEPTED 2026-09-30)
 
 Both first submissions were rejected AFTER clean portal uploads. Submission mechanics (Part 7) and passing
 human review are different games. Design for the reviewer from day one:
@@ -464,6 +513,38 @@ payment-card). Treat all four as a pre-submission gate, not a one-time fix:
 - [ ] No tool schema, description, or server instruction solicits health information, biometric data, SSNs,
   or payment-card data — grep every field's name and description for these categories before submitting;
   don't rely on memory of what was added months ago.
+
+**Checklist — horizonpetwastesolutions.com, Agent Plugins format, ACCEPTED 2026-09-30 after 5 rounds: what
+actually worked.** Most of the 5 rounds were avoidable by reading
+`developers.openai.com/plugins/deploy/submission-errors` first instead of after round 2 — run this
+checklist BEFORE the first upload of a `plugin.json` package, not after a rejection:
+- [ ] `extensions["com.openai"].interface.category` is one of the exact Title Case values from Part 7a's
+  list (or omitted for Other) — never the old `chatgpt-app-submission.json` SCREAMING_SNAKE_CASE enum, and
+  never a near-fit guess like `"Lifestyle"`.
+- [ ] If the portal still shows "We couldn't confirm the selected category…" after that, check whether the
+  package shows "No issues" overall and whether this message appears on
+  `plugins/deploy/submission-errors` as a documented error — if not, it's a non-blocking warning; submit
+  rather than keep rewriting the listing.
+- [ ] Every tool is named for exactly what it does, not what it aspires to do — a tool that only drafts an
+  email and does not send/book anything is named `draft_..._email`/`draft_..._request`, not
+  `request_...`/`book_...`. Rename consistently everywhere the tool is referenced (server, `plugin.json`,
+  `mcp.json` is unaffected, `skills/<name>/SKILL.md`, tests, the client SOP) — a partial rename reads as a
+  new unclear name.
+- [ ] `description` and `longDescription` both open with ONE plain sentence stating the plugin's single
+  purpose before any detail on how it works; neither field advertises pricing (state that pricing
+  information is available via a tool, never quote the price itself in the listing text).
+- [ ] The domain-verification challenge token is live at `/.well-known/openai-apps-challenge` (plain text,
+  only the token, `Cache-Control: no-store`) BEFORE running Scan Tools/domain verification on the MCP tab —
+  `curl` and byte-compare first.
+- [ ] After every deploy to the live MCP server (a rename, a new tool, an annotation fix), press
+  **Rescan** on the portal's MCPs tab before reading its findings — scan results are cached and a fixed
+  issue can appear to "come back" for hours on a stale scan.
+- [ ] The Review-information test-case form is filled in by hand (it is not prefilled from `plugin.json`);
+  every `expected_output` typed in was just verified against a live `tools/call`, not assumed from the
+  manifest or memory.
+- [ ] `version` in `plugin.json` is bumped from the last uploaded value, even for a one-field fix.
+- [ ] A dated message → field → fix table for this submission exists in the client stream's SOP (not just
+  in chat/memory) so a later round, or a different reviewer's rejection, doesn't re-derive the same fixes.
 
 **Resubmitting after a rejection:** open the app in the portal and click **Edit — not "View plugin"**. The
 View page is read-only and Scan Tools renders empty/disabled there, which reads as a broken portal or a
