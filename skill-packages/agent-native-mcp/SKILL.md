@@ -12,7 +12,7 @@ metadata:
     (test-case fidelity across web+mobile, explicit annotation justifications, input minimization,
     sensitive-data solicitation) — folded into Part 9 as a pre-submission checklist; Part 7a added
     2026-09-30 for the current Agent Plugins ZIP/portal format; horizonpetwastesolutions.com's
-    plugin.json package went through the live portal 2026-09-30 and was ACCEPTED at 21:46 after 5
+    plugin.json package went through the live portal 2026-09-30 and passed the portal checks and was SUBMITTED for review at 21:45 after 5
     rounds — confirms the Agent Plugins ZIP is what the portal actually asks for today (Part 7's
     chatgpt-app-submission.json stays as a documented fallback only, unconfirmed live since medinaclean
     and the first northvalleyintel.com submission); the 5-round message→fix history and what to check
@@ -332,7 +332,7 @@ shared between Codex CLI/IDE and ChatGPT) alongside the `chatgpt-app-submission.
 **The current submission docs do not mention `chatgpt-app-submission.json` anywhere** — that's silence, not an
 explicit "deprecated." **Confirmed 2026-09-30:** this is the live answer — the `plugin.json`/`mcp.json`/
 `skills/` ZIP is what `platform.openai.com/plugins` actually asks for and accepts today; the
-horizonpetwastesolutions.com package went through 5 rounds on this exact format and was **ACCEPTED**
+horizonpetwastesolutions.com package went through 5 rounds on this exact format and was **SUBMITTED for review** (portal checks passed; outcome pending)
 2026-09-30 21:46. Keep Part 7's `chatgpt-app-submission.json` as a **fallback reference only** (it is what
 medinaclean.com and the first northvalleyintel.com submission used, under the OLD portal) — do not start a
 new submission from it.
@@ -459,7 +459,7 @@ behind an opt-in env var:
 
 ---
 
-## Part 9 — Passing the directory REVIEW (real OpenAI rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com ACCEPTED 2026-09-30)
+## Part 9 — Passing the directory REVIEW (real OpenAI rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com SUBMITTED 2026-09-30)
 
 Both first submissions were rejected AFTER clean portal uploads. Submission mechanics (Part 7) and passing
 human review are different games. Design for the reviewer from day one:
@@ -514,7 +514,7 @@ payment-card). Treat all four as a pre-submission gate, not a one-time fix:
   or payment-card data — grep every field's name and description for these categories before submitting;
   don't rely on memory of what was added months ago.
 
-**Checklist — horizonpetwastesolutions.com, Agent Plugins format, ACCEPTED 2026-09-30 after 5 rounds: what
+**Checklist — horizonpetwastesolutions.com, Agent Plugins format, SUBMITTED 2026-09-30 after 5 portal rounds (review pending): what
 actually worked.** Most of the 5 rounds were avoidable by reading
 `developers.openai.com/plugins/deploy/submission-errors` first instead of after round 2 — run this
 checklist BEFORE the first upload of a `plugin.json` package, not after a rejection:
