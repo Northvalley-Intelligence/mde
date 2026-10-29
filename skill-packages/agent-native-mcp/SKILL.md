@@ -4,7 +4,10 @@ description: Make a website/service agent-native — build a Model Context Proto
 metadata:
   source: medinaclean.com GEN-001 (agent-native MCP lane) + GEN-002 directory submission, 2026-08;
     northvalleyintel.com second implementation (Cloudflare Pages Functions variant), 2026-08-06;
-    horizonpetwastesolutions.com Codex/ChatGPT Agent Plugins package (PR #20, handoff 23), 2026-09-30
+    horizonpetwastesolutions.com Codex/ChatGPT Agent Plugins package (PR 20, handoff 23), 2026-09-30;
+    horizonpetwastesolutions.com APPROVED 2026-10-15 + published 2026-10-16 (board stream
+    complimentary-report-horizonpetwastesolutions-com L1/L2 2026-10-15, L3 2026-10-17 00:05);
+    smartcashsheet openai-01 docs re-read 2026-10-28 (OAuth, review block in plugin.json)
   status: battle-tested on two independent stacks (live MCP booking in Claude + ChatGPT;
     OpenAI directory submitted for medinaclean.com; northvalleyintel.com/mcp live);
     first two OpenAI submissions REJECTED 2026-08-22 — causes diagnosed, fixes shipped,
@@ -12,11 +15,15 @@ metadata:
     (test-case fidelity across web+mobile, explicit annotation justifications, input minimization,
     sensitive-data solicitation) — folded into Part 9 as a pre-submission checklist; Part 7a added
     2026-09-30 for the current Agent Plugins ZIP/portal format; horizonpetwastesolutions.com's
-    plugin.json package went through the live portal 2026-09-30 and passed the portal checks and was SUBMITTED for review at 21:45 after 5
-    rounds — confirms the Agent Plugins ZIP is what the portal actually asks for today (Part 7's
-    chatgpt-app-submission.json stays as a documented fallback only, unconfirmed live since medinaclean
-    and the first northvalleyintel.com submission); the 5-round message→fix history and what to check
-    BEFORE submitting are folded into Part 7a and Part 9, 2026-09-30
+    plugin.json package went through the live portal 2026-09-30, passed the portal checks after 5
+    rounds and was SUBMITTED for review at 21:45 (OpenAI "Submission Received" mail); OpenAI APPROVED
+    it 2026-10-15 ("ChatGPT Plugin Submission Approved", "Horizon Pet Waste Solutions (v1.0.0)") and
+    Ferosh PUBLISHED it 2026-10-16; the live listing was verified 2026-10-17 (portal shows version 1.0.3
+    Published, 4 tools, no scan findings) — the first Northvalley directory APPROVAL, and proof the
+    Agent Plugins ZIP is the format that passes today (Part 7's chatgpt-app-submission.json stays a
+    fallback reference only); r1→r5 history, the approved package's contents, and what to check
+    BEFORE submitting are in Part 7a and Part 9; Part 7b (OAuth-protected servers) added 2026-10-28
+    from first-hand reads of the current docs — not yet proven through the portal
 ---
 
 # Agent-Native MCP
@@ -332,8 +339,9 @@ shared between Codex CLI/IDE and ChatGPT) alongside the `chatgpt-app-submission.
 **The current submission docs do not mention `chatgpt-app-submission.json` anywhere** — that's silence, not an
 explicit "deprecated." **Confirmed 2026-09-30:** this is the live answer — the `plugin.json`/`mcp.json`/
 `skills/` ZIP is what `platform.openai.com/plugins` actually asks for and accepts today; the
-horizonpetwastesolutions.com package went through 5 rounds on this exact format and was **SUBMITTED for review** (portal checks passed; outcome pending)
-2026-09-30 21:46. Keep Part 7's `chatgpt-app-submission.json` as a **fallback reference only** (it is what
+horizonpetwastesolutions.com package went through 5 rounds on this exact format, was **SUBMITTED for review**
+2026-09-30 21:45, **APPROVED 2026-10-15** and **published 2026-10-16** (see "What the approved Horizon package
+contained" below). Keep Part 7's `chatgpt-app-submission.json` as a **fallback reference only** (it is what
 medinaclean.com and the first northvalleyintel.com submission used, under the OLD portal) — do not start a
 new submission from it.
 
@@ -406,25 +414,75 @@ least once and restate the trust invariant (request, never confirm) for any writ
      portal was still serving round 3's cached scan. Pressing Rescan re-read the live server and the issue
      vanished with no code change. Treat "the issue came back" as "did I rescan?" before treating it as a
      regression.
-6. Complete **Review information** — **this form is NOT prefilled from the package.** Unlike Part 7's
-   `chatgpt-app-submission.json` (which carried `test_cases`/`negative_test_cases` straight into the
-   portal), the Agent Plugins format has no manifest field for them: type in each test case by hand
-   (portal fields: Scenario / User prompt / Tool triggered / Expected output), plus negative cases. Verify
-   every `expected_output` against the LIVE server (`tools/call`, not source) before typing it in, and keep
-   a copy-paste block of all cases in the client-repo SOP so re-submission doesn't re-derive them.
-7. Select the draft → **Submit for review** → confirm policy attestations.
-8. Track the decision by email; **Publish** once approved.
+6. Complete **Review information** (Metadata & Skills → Review information → Review details). Horizon's r5
+   package had no review block, so the form was blank and the 5 + 3 cases were typed in by hand
+   (fields Scenario / User prompt / Tool triggered / Expected output) — that is what was approved.
+   **Update 2026-10-28 (docs, `developers.openai.com/plugins/deploy/submission` "Automatically provide
+   submission and review information"; UNVERIFIED through the portal by us):** `plugin.json` can now carry
+   them under `extensions["com.openai"].review` — `test_cases.positive[]` / `test_cases.negative[]` with
+   `description`, `prompt`, `tools_triggered` (string; may list several, comma-separated), `expected_behavior`
+   (note: not `expected_output`), plus `demo_recording_url`, `commerce`, `commerce_description` — and
+   `extensions["com.openai"].publication` {`countries` (e.g. `["US"]`), `release_notes`}. Imported cases are
+   **read-only** in the dashboard (change the ZIP to change them). Exactly 5 positive + 3 negative are
+   required at submission. **Never** put credentials in the ZIP: `test_credentials` and
+   `reviewer_instructions` are rejected; reviewer sign-in goes in the Review details form only.
+   Either way, verify every expected behaviour against the LIVE server first and keep the cases in the
+   client stream so a re-submission doesn't re-derive them.
+7. Select the draft → **Submit for review** → confirm policy attestations. The confirmation mail is
+   "ChatGPT Plugin Submission Received" — that means SUBMITTED, not approved (Horizon 2026-09-30: the board
+   wrote "accepted" from it and had to correct the record the next day).
+8. The decision arrives by email ("ChatGPT Plugin Submission Approved [<plugin id>]" for Horizon, 15 days
+   after submission). **Publish** is a separate, owner-only press on the approved version; then verify the
+   live listing against `tools/list` (Horizon L3 2026-10-17 00:05).
+9. **After publication** (docs, 2026-10-28): OpenAI rescans the live MCP server **daily**; changed tool
+   metadata is evaluated per tool and *held* if flagged (the previously approved definition stays live),
+   new tools stay unavailable until approved, removals take effect after a scan. Metadata/skills changes
+   still need a new ZIP + review. Changing the MCP URL needs OpenAI support. So: freeze tool names/schemas
+   during review, and treat every post-launch tool change as a mini-submission (Rescan, read Issues).
 
 **Versioning:** bump `plugin.json`'s `version` on every re-upload, even a one-field fix — the portal lists
 and diffs by version, and re-uploading the same version number can read as a re-run of the already-rejected
-upload rather than a new one. Horizon went `1.0.0` → `1.0.3` across four correction rounds before
-acceptance.
+upload rather than a new one. Horizon's ZIPs were r1 `1.0.0`, r2 `1.0.0` (not bumped — avoid), r3 `1.0.1`,
+r4 `1.0.2`, r5 `1.0.3`. Observed but unexplained: both OpenAI mails ("Received" 09-30, "Approved" 10-15) name
+**v1.0.0** while the portal lists **1.0.3 · Published** (Horizon L3 2026-10-17 00:05) — the mail's version
+label is not a reliable record of which ZIP was reviewed; check the portal.
 
 **Keep a round log.** When a submission needs more than one round, keep a dated message → field → fix table
 (portal message verbatim, the exact field it pointed at, what changed, which PR) in the client stream's
 SOP — not just in memory. Horizon needed 5 rounds; re-reading
 `developers.openai.com/plugins/deploy/submission-errors` BEFORE round 1 (rather than after round 2) would
 have avoided the category-casing guesses in rounds 1–2, so read that page first on every future submission.
+
+**What the approved Horizon package contained** (r5 ZIP, `complimentary-report-horizonpetwastesolutions-com/
+attachments/horizon-codex-plugin-2026-09-30-r5.zip`, unzipped and diffed against r1–r4 on 2026-10-28):
+- Files at the ZIP root: `plugin.json`, `mcp.json`, `assets/logo.png` (512×512), `assets/composer-icon.png`
+  (96×96), `skills/horizon-quote/SKILL.md`.
+- `plugin.json`: `name` `horizon-pet-waste-solutions`, `version` `1.0.3`, one-sentence purpose `description`,
+  `author` = Northvalley Intelligence (the submitting developer, not the client), `homepage`, `repository`,
+  `license` `UNLICENSED`, `keywords`, root `"skills": "./skills/"` (the current docs call that field Codex-only
+  and say portable packages discover `skills/` automatically — it was present and harmless), and
+  `extensions["com.openai"].interface` with `displayName`, `shortDescription` (≤30), `longDescription`
+  (purpose sentence first), `developerName` Northvalley Intelligence, `category` **Other**, `capabilities`
+  `["Read","Write"]`, the four URLs (`websiteURL`, `supportURL` = the client's `/contact`, `privacyPolicyURL`,
+  `termsOfServiceURL`), exactly 3 `defaultPrompt`s, `brandColor`, `composerIcon`, `logo`, `screenshots: []`.
+  No `review`/`publication` block (test cases typed by hand).
+- `mcp.json`: one `streamable-http` server keyed by the plugin `name`, URL `https://www.<domain>/mcp`, **no
+  auth block** (auth None chosen on the MCPs tab).
+- Portal-side, not in the ZIP: domain verification via `/.well-known/openai-apps-challenge` (Next.js route),
+  Rescan, the 5 + 3 cases, the YouTube-unlisted demo URL (`B2HepUf6bac`), countries, release notes,
+  attestations (commerce No).
+- Server: 4 tools, all three hints explicit; the write-ish tool only DRAFTS an email (`draft_quote_request_email`).
+
+| Round | ZIP | Portal message(s) | Fix |
+|---|---|---|---|
+| r1 → r2 | `1.0.0` → `1.0.0` | developer shown as the client (Isaac); "Support URL is required."; "Select a valid category." (`Lifestyle`); "Add no more than three prompts."; skills check pending; MCP configuration incomplete | `author`/`developerName` → Northvalley Intelligence; `supportURL` added; category → `LIFESTYLE` (wrong guess); 4 → 3 prompts; root `skills` added; MCP tab steps are portal-side (domain, auth, scan) |
+| r2 → r3 | `1.0.0` → `1.0.1` | "Select a valid category." again | category → `Other` |
+| r3 → r4 | `1.0.1` → `1.0.2` | "Challenge endpoint returned HTTP 404"; tool `request_a_quote` "name appears unclear" | challenge route added; tool renamed `draft_quote_request_email` everywhere |
+| r4 → r5 | `1.0.2` → `1.0.3` | "We couldn't confirm the selected category…" (warning) | description/longDescription open with one purpose sentence; pricing wording removed |
+| r5 | `1.0.3` | stale tool issue → **Rescan** cleared it; category banner stayed (non-blocking) | submitted as is, 2026-09-30 21:45 → approved 2026-10-15 |
+
+Sources: Horizon SOP `attachments/sop-openai-directory-submission-2026-09-30.md` round tables; Horizon L3
+2026-09-30 03:20–17:25; L2 2026-09-30 17:50 and 2026-10-15 13:05.
 
 **Validator test pattern** (`tests/codex-plugin.test.ts`, horizonpetwastesolutions.com): a static contract check
 mirroring Part 3's philosophy — assert the manifest shapes without a network call, then gate a live check
@@ -443,6 +501,92 @@ behind an opt-in env var:
   and confirm 200 — presence/reachability only, not a full JSON Schema validation; print a skip notice when the
   env var is unset so a green run is never mistaken for a live-schema proof.
 
+## Part 7b — OAuth-protected server (per-user data) — submission specifics
+
+Written 2026-10-28 for smartcashsheet (the first Northvalley submission with auth ≠ none), from first-hand
+reads of `developers.openai.com/plugins/deploy/submission.md`, `/plugins/build/plugins.md` ("Configure MCP
+authentication"), `/plugins/deploy/submission-errors.md`, `/plugins/plugin-guidelines.md`, plus the live
+smartcashsheet production server. **Not yet proven through the portal** — treat portal behaviour below as
+UNVERIFIED until a submission has gone through; record each round's real messages here.
+
+**Auth is declared in `mcp.json`, not typed into the portal.** The MCPs tab "reads advanced authentication
+settings from your package's `mcp.json`" and "doesn't provide an advanced OAuth settings editor". Put it on the
+server entry, under the server's own `extensions["com.openai"].auth` (not in `plugin.json`):
+```json
+{ "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": { "<name>": { "type": "streamable-http", "url": "https://<host>/<mcp-path>",
+    "extensions": { "com.openai": { "auth": { "type": "oauth", "client": { "mode": "dcr" } } } } } } }
+```
+- `type`: `none` | `oauth` | `mixed` (public + OAuth) | `api_key` — **the portal has no API-key/bearer flow**
+  ("Uploading an API-key declaration alone won't complete MCP setup"); never embed a token in `headers`
+  (public submission rejects non-empty headers); never declare a protected server as `none`.
+- Client registration `client.mode`: `dcr` (Dynamic Client Registration — registration endpoint from
+  discovery, or `registrationUrl` override; no client id/secret in the package), `cimd` (Client ID Metadata
+  Document, falls back to DCR), or `provided` (`clientId` + `tokenEndpointAuthMethod`; the secret is typed in
+  the portal, `clientSecret` in the manifest is rejected). Supabase Auth's OAuth 2.1 server supports DCR once
+  "Allow Dynamic OAuth Apps" is on — use `dcr` and let discovery supply the endpoints.
+- Overrides only when discovery can't supply them: `authorizationUrl`, `tokenUrl`, `registrationUrl`,
+  `authorizationServerBase`, `resource`, `baseScopes`, `defaultScopes`, `oidc*`. Field names are
+  case-sensitive (`clientId`, not `client_id`).
+- "Existing client registration can lock credential changes" — check the saved connection after a new upload
+  instead of assuming it replaced the client. The portal's DCR client becomes a real OAuth app on the
+  provider (e.g. Supabase → Authentication → OAuth Apps): **never delete it in a probe-client clean-up.**
+
+**Discovery the server must serve (smartcashsheet, verified live 2026-10-28):** unauthenticated `POST /api/mcp`
+→ `401` with `WWW-Authenticate: Bearer realm="…", resource_metadata="https://<host>/.well-known/oauth-protected-resource"`;
+that RFC 9728 document (also at the path-aware `/.well-known/oauth-protected-resource/<mcp-path>`) lists
+`resource`, `authorization_servers`, `bearer_methods_supported: ["header"]`, `scopes_supported`; the
+authorization server's metadata (`<as>/.well-known/oauth-authorization-server…`) carries
+`registration_endpoint`, `code_challenge_methods_supported` incl. `S256`, and
+`token_endpoint_auth_methods_supported` incl. `none` (public PKCE clients). With OAuth, **`initialize` and
+`tools/list` also return 401** — you cannot read the tool list anonymously; read tools from source, and let
+the portal's scan (after you authorize) be the live check. Serve on the canonical host (apex → `www` 307
+redirects are a risk for POST clients; give the portal the `www` URL).
+
+**What the portal asks for when auth ≠ none** (docs, `plugins/deploy/submission` §2–3):
+1. MCPs → **Connect**: check URL + Authentication read from `mcp.json`; complete **domain verification**
+   (same `/.well-known/openai-apps-challenge` plain-text token as Part 7a; for a production app whose code is
+   released on a schedule, ship the route reading the token from an env var *before* the portal session so
+   the token is an env change + redeploy, not a code release); then **authorize an account** so the portal
+   can scan — use the reviewer test account, never a real user's.
+2. **Reviewer credentials** in Review information → Review details (never in the ZIP): "a dedicated test
+   account, login URL, workspace or tenant details, and sign-in instructions. Use sample data, not a real
+   user's account. The account needs the permissions and data required by your test cases and should work
+   immediately **without MFA approval, email or SMS codes, magic links, or private-network access**." "Keep
+   the test account and sample data available for subsequent reviews." Final submission requires
+   "Reviewer-ready demo credentials when the server uses OAuth" (`submission-errors`).
+   - Plan/entitlement gates: if tools are gated by a paid plan, the reviewer account must be on that plan
+     for the whole review (comp it; don't rely on a checkout that can lapse — Horizon's review took 15 days).
+   - Use a mailbox you control; a public inbox (yopmail etc.) lets anyone reset the reviewer password.
+   - Creating that account on a client's production is a production write: it is the client's/owner's
+     step, not an agent's, wherever production is read-only for agents.
+3. **Consent page** (the authorization server's UI on your host): guidelines — "the flow must be transparent
+   and explicit. Users must be informed of all requested permissions, and those requests must be limited to
+   what is necessary". In practice: name the account being connected, render every scope in plain words
+   (e.g. `offline_access` → "Keep this connection active until you disconnect it"), list what each tool can
+   see, say it can't change anything, and say where to disconnect. The demo video must show this page.
+4. **Scopes:** request the minimum (identity + the read scopes the tools need); disclose any refresh-token
+   scope in the consent card and the privacy policy.
+5. **Privacy policy / terms** must exist for MCP review and meet the guidelines' minimum: categories of data,
+   purposes, **categories of recipients**, **retention timelines**, user controls — "as long as necessary"
+   fails. For per-user data add: what the assistant receives (tool results only, never the chat), what you
+   log for each call and for how long, how to disconnect. The listing URLs must "identify the same publisher
+   as the submission" — submit under the verified identity of the company named on those pages.
+6. **Annotations on read tools:** `readOnlyHint: true` only if the call modifies nothing — "Use `false` for …
+   persisting artifacts". Audit-log rows are generally fine; a read path that also refreshes/syncs user
+   records is not literally read-only — remove that write from the MCP path or be ready to appeal with the
+   reason. `openWorldHint: false` is right for "a bounded private account". Annotation **justifications**:
+   the guidelines (2026-10-28) say "no longer required", but `submission-errors` still lists "a justification
+   for each value on every MCP tool" — prepare them anyway.
+7. **Response minimization** (guidelines, Tool data handling): do not return internal row ids, sync
+   timestamps or request ids unless the user's question needs them — per-user finance/CRM data paths reused
+   from an in-app assistant usually carry them; strip them in the MCP layer.
+8. **Plan/upgrade wording:** a tool may say a feature needs a different plan but "must not … promote
+   upgrades" or start a checkout — "Upgrade to use this" is upsell wording; state the fact only.
+9. **Regulated categories (finance, health):** keep tools to figures/information, never a verdict or advice;
+   say "not financial advice" in the listing; no restricted inputs (PCI card data, PHI, government IDs,
+   credentials/OTPs).
+
 ## Part 8 — Submit to the Claude / Anthropic connector directory
 
 - Portal: **claude.ai admin settings → directory submissions** — requires a **Team or Enterprise** org
@@ -459,7 +603,7 @@ behind an opt-in env var:
 
 ---
 
-## Part 9 — Passing the directory REVIEW (real OpenAI rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com SUBMITTED 2026-09-30)
+## Part 9 — Passing the directory REVIEW (real OpenAI rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com SUBMITTED 2026-09-30, APPROVED 2026-10-15)
 
 Both first submissions were rejected AFTER clean portal uploads. Submission mechanics (Part 7) and passing
 human review are different games. Design for the reviewer from day one:
@@ -514,7 +658,7 @@ payment-card). Treat all four as a pre-submission gate, not a one-time fix:
   or payment-card data — grep every field's name and description for these categories before submitting;
   don't rely on memory of what was added months ago.
 
-**Checklist — horizonpetwastesolutions.com, Agent Plugins format, SUBMITTED 2026-09-30 after 5 portal rounds (review pending): what
+**Checklist — horizonpetwastesolutions.com, Agent Plugins format, SUBMITTED 2026-09-30 after 5 portal rounds, APPROVED 2026-10-15: what
 actually worked.** Most of the 5 rounds were avoidable by reading
 `developers.openai.com/plugins/deploy/submission-errors` first instead of after round 2 — run this
 checklist BEFORE the first upload of a `plugin.json` package, not after a rejection:
@@ -545,6 +689,43 @@ checklist BEFORE the first upload of a `plugin.json` package, not after a reject
 - [ ] `version` in `plugin.json` is bumped from the last uploaded value, even for a one-field fix.
 - [ ] A dated message → field → fix table for this submission exists in the client stream's SOP (not just
   in chat/memory) so a later round, or a different reviewer's rejection, doesn't re-derive the same fixes.
+
+**Pre-submission checklist (merged 2026-10-28: rejections 1–3 + Horizon's approved run + Part 7b OAuth). Run
+it top to bottom before the FIRST upload; every item is a past rejection, a past portal round, or a
+documented final-submission rule.**
+- [ ] Read `developers.openai.com/plugins/deploy/submission-errors` and `/plugins/deploy/submission` today
+  (append `.md` for raw text) — the field reference moves; Horizon lost rounds 1–2 and 4–5 to not doing this.
+- [ ] Publisher: the verified developer identity = the company named on the privacy/terms pages; the
+  submitter has Apps Management = Write in that org.
+- [ ] Owner/client written go to list the app (directory listing is promotion, not just a connector).
+- [ ] `/privacy` + `/terms` live, with named recipients, real retention durations (incl. the MCP call log),
+  what the assistant receives, how to disconnect, a visible date. (Rejection 1; guidelines.)
+- [ ] `supportURL` is a real support/contact page (Horizon r1 "Support URL is required").
+- [ ] Icons square PNG, logo ≥512 recommended (docs minimum 48), composer 96; from a real emblem, not a lockup.
+- [ ] `plugin.json`: `$schema`, kebab `name` = `mcp.json` key, bumped semver, purpose-first `description` and
+  `longDescription`, `displayName`/`shortDescription` ≤30, `developerName` = publisher, `category` from the
+  documented Title-Case list (Horizon r1–r3), ≤3 `defaultPrompt`s ≤128 chars (Horizon r1), no pricing/upsell
+  text (Horizon r4), four HTTPS URLs.
+- [ ] `review` block: exactly 5 positive + 3 negative, each positive with `tools_triggered` + `expected_behavior`
+  that the LIVE server satisfies on ChatGPT **web and mobile** (rejections 2–3); `demo_recording_url`;
+  `commerce: false` unless physical goods; no credentials in the ZIP.
+- [ ] Every tool: name says exactly what it does (Horizon r3), all three hints explicit booleans matching
+  behaviour (a read path must not write), justifications prepared (rejection 3).
+- [ ] Every input: minimal, purpose-stated, no credential-shaped field, no restricted data, no conversation
+  history/location, free text constrained (rejections 1 and 3).
+- [ ] Every output: no echoed input PII, no internal ids/timestamps the question didn't need (rejection 1;
+  guidelines).
+- [ ] OAuth only: `mcp.json` auth block; discovery verified live (401 + resource_metadata → AS metadata with
+  `registration_endpoint`/S256); consent page names the account, plain-language scopes, data list, disconnect
+  path; reviewer account on the right plan, sample data, no MFA/codes, mailbox you control, kept for later
+  reviews (Part 7b).
+- [ ] Challenge route live (env-driven for release-gated apps), byte-compared before Verify (Horizon r3).
+- [ ] After every server deploy: **Rescan** before reading MCP findings (Horizon r5).
+- [ ] Demo video: shows the connect (OAuth consent) flow and the main tools on the reviewer account, nothing
+  real; unlisted URL plays signed-out.
+- [ ] Release notes written; countries chosen; attestations answered honestly.
+- [ ] Record: "Submission Received" = submitted; only "Submission Approved" = approved; Publish is the owner's
+  press; verify the live listing after (Horizon 2026-09-30 correction, 2026-10-17 check).
 
 **Resubmitting after a rejection:** open the app in the portal and click **Edit — not "View plugin"**. The
 View page is read-only and Scan Tools renders empty/disabled there, which reads as a broken portal or a
@@ -618,7 +799,9 @@ throttle, fail closed without it · verify stateless flow live, on the PR previe
 no-redirect home w/ purpose above the fold (OAuth) · `/terms` + `/privacy` with **named recipients and real
 retention durations** · `$schema`=apps-sdk URL · justifications snake_case, annotations camelCase ·
 **exactly** 5 + 3 test cases · `tools_triggered` is a **string** · replace every `example.com` default ·
-domain token via middleware, set var → **redeploy** → byte-compare → then Verify · silent demo recorded via
+domain token via middleware, set var → **redeploy** → byte-compare → then Verify · OAuth: auth in `mcp.json`
+(`dcr`), reviewer account w/o MFA on the right plan, plain-language consent page, read path writes nothing,
+no internal ids in results · Submission Received ≠ Approved · silent demo recorded via
 live connector · business=Entity verification · booking=lead not commerce · re-probe before believing a
 post-deploy failure · **no `secret`/credential-shaped tool args** · constrain free-text fields + reject
 sensitive content server-side · minimization + purpose + privacy URL in write-tool descriptions · results
