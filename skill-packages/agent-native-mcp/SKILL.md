@@ -16,7 +16,7 @@ metadata:
     sensitive-data solicitation) — folded into Part 9 as a pre-submission checklist; Part 7a added
     2026-09-30 for the current Agent Plugins ZIP/portal format; horizonpetwastesolutions.com's
     plugin.json package went through the live portal 2026-09-30, passed the portal checks after 5
-    rounds and was SUBMITTED for review at 21:45 (OpenAI "Submission Received" mail); OpenAI APPROVED
+    rounds and was SUBMITTED for review at 21:45 (per the OpenAI "Submission Received" mail); OpenAI APPROVED
     it 2026-10-15 ("ChatGPT Plugin Submission Approved", "Horizon Pet Waste Solutions (v1.0.0)") and
     Ferosh PUBLISHED it 2026-10-16; the live listing was verified 2026-10-17 (portal shows version 1.0.3
     Published, 4 tools, no scan findings) — the first Northvalley directory APPROVAL, and proof the
@@ -340,7 +340,7 @@ shared between Codex CLI/IDE and ChatGPT) alongside the `chatgpt-app-submission.
 explicit "deprecated." **Confirmed 2026-09-30:** this is the live answer — the `plugin.json`/`mcp.json`/
 `skills/` ZIP is what `platform.openai.com/plugins` actually asks for and accepts today; the
 horizonpetwastesolutions.com package went through 5 rounds on this exact format, was **SUBMITTED for review**
-2026-09-30 21:45, **APPROVED 2026-10-15** and **published 2026-10-16** (see "What the approved Horizon package
+2026-09-30 21:45 (the single time used throughout, from the "Submission Received" mail in the record; Ferosh's recollection of 21:46 is not used), **APPROVED 2026-10-15** and **published 2026-10-16** (see "What the approved Horizon package
 contained" below). Keep Part 7's `chatgpt-app-submission.json` as a **fallback reference only** (it is what
 medinaclean.com and the first northvalleyintel.com submission used, under the OLD portal) — do not start a
 new submission from it.
@@ -518,8 +518,8 @@ server entry, under the server's own `extensions["com.openai"].auth` (not in `pl
     "extensions": { "com.openai": { "auth": { "type": "oauth", "client": { "mode": "dcr" } } } } } } }
 ```
 - `type`: `none` | `oauth` | `mixed` (public + OAuth) | `api_key` — **the portal has no API-key/bearer flow**
-  ("Uploading an API-key declaration alone won't complete MCP setup"); never embed a token in `headers`
-  (public submission rejects non-empty headers); never declare a protected server as `none`.
+  ("Uploading an API-key declaration alone won't complete MCP setup"); the docs say "Don't embed a token in server `headers` to work around this limitation"
+  (and public submission rejects non-empty headers); never declare a protected server as `none`.
 - Client registration `client.mode`: `dcr` (Dynamic Client Registration — registration endpoint from
   discovery, or `registrationUrl` override; no client id/secret in the package), `cimd` (Client ID Metadata
   Document, falls back to DCR), or `provided` (`clientId` + `tokenEndpointAuthMethod`; the secret is typed in
@@ -701,7 +701,7 @@ documented final-submission rule.**
 - [ ] `/privacy` + `/terms` live, with named recipients, real retention durations (incl. the MCP call log),
   what the assistant receives, how to disconnect, a visible date. (Rejection 1; guidelines.)
 - [ ] `supportURL` is a real support/contact page (Horizon r1 "Support URL is required").
-- [ ] Icons square PNG, logo ≥512 recommended (docs minimum 48), composer 96; from a real emblem, not a lockup.
+- [ ] Icons square PNG, logo ≥512 is Horizon practice, not a docs rule (docs: square, ≥48, ≤4096), composer 96; from a real emblem, not a lockup.
 - [ ] `plugin.json`: `$schema`, kebab `name` = `mcp.json` key, bumped semver, purpose-first `description` and
   `longDescription`, `displayName`/`shortDescription` ≤30, `developerName` = publisher, `category` from the
   documented Title-Case list (Horizon r1–r3), ≤3 `defaultPrompt`s ≤128 chars (Horizon r1), no pricing/upsell
