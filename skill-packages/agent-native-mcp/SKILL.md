@@ -445,9 +445,10 @@ behind an opt-in env var:
 
 ## Part 8 — Submit to the Claude / Anthropic connector directory
 
-- Portal: **claude.ai admin settings → directory submissions** — requires a **Team or Enterprise** org
-  (individual plans can't submit; the connector still works by URL). Submitter needs Directory-management /
-  Libraries permission.
+- Portal: **https://claude.ai/directory/manage → Submit new → MCP connector**. **Any paid Claude plan can submit**
+  (Pro/Max included; corrected 2026-11-01 from the official page https://claude.com/docs/connectors/building/submission —
+  the earlier "Team or Enterprise only" note was stale). Read that page before each submission; it changes.
+  Before the portal: add the server as a custom connector in Claude and call each tool (Test & launch asks you to confirm).
 - Requirements: tool `title` + `readOnlyHint`/`destructiveHint` on every tool; **no-auth is an allowed**
   connection type; public privacy policy (incomplete = instant reject); a reviewer test account/instructions
   (for a public no-auth connector, none needed — but note a write tool will send real notifications during
