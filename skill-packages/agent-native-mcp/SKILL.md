@@ -16,7 +16,8 @@ metadata:
     rounds — confirms the Agent Plugins ZIP is what the portal actually asks for today (Part 7's
     chatgpt-app-submission.json stays as a documented fallback only, unconfirmed live since medinaclean
     and the first northvalleyintel.com submission); the 5-round message→fix history and what to check
-    BEFORE submitting are folded into Part 7a and Part 9, 2026-09-30
+    BEFORE submitting are folded into Part 7a and Part 9, 2026-09-30; resplendenttea.com's OpenAI submission
+    2026-11-02 (test cases live in the ZIP, demo must use @mention, read-this-first list) folded into Part 7b
 ---
 
 # Agent-Native MCP
@@ -133,6 +134,9 @@ A standard remote MCP server (Streamable HTTP, HTTPS, use the `/mcp` path — NO
 - **Claude:** Settings → Connectors → Add custom connector → URL. No-auth is allowed.
 - **ChatGPT:** Settings → Connectors → Advanced → **Developer Mode** → add the URL (paid tiers). The generic
   "unreviewed server" warning is fine for your own domain.
+  **Current menu, seen 2026-11-02 on a Free account:** left sidebar **Plugins → Add → Add custom MCP server**,
+  tick the risk box, **Create as a plugin**, then **Connect**. The tick and the Connect are the account owner's
+  to press. In a chat, type `@<name>` and press Return once to attach it, then type the prompt in the SAME message.
 - **Gemini:** Connected Apps (personal) / Manage team → Connected apps (Enterprise) → add the URL.
 
 ## Part 5 — Discovery / GEO
@@ -406,12 +410,7 @@ least once and restate the trust invariant (request, never confirm) for any writ
      portal was still serving round 3's cached scan. Pressing Rescan re-read the live server and the issue
      vanished with no code change. Treat "the issue came back" as "did I rescan?" before treating it as a
      regression.
-6. Complete **Review information** — **this form is NOT prefilled from the package.** Unlike Part 7's
-   `chatgpt-app-submission.json` (which carried `test_cases`/`negative_test_cases` straight into the
-   portal), the Agent Plugins format has no manifest field for them: type in each test case by hand
-   (portal fields: Scenario / User prompt / Tool triggered / Expected output), plus negative cases. Verify
-   every `expected_output` against the LIVE server (`tools/call`, not source) before typing it in, and keep
-   a copy-paste block of all cases in the client-repo SOP so re-submission doesn't re-derive them.
+6. Complete **Review information**. **Corrected 2026-11-02:** test cases come from the ZIP (`extensions["com.openai"].review.test_cases`, see Part 7b) and are read-only in the form; an older version of this step said to type them by hand, which the portal now refuses. Verify every `expected_behavior` against the LIVE server (`tools/call`, not source) before building the ZIP.
 7. Select the draft → **Submit for review** → confirm policy attestations.
 8. Track the decision by email; **Publish** once approved.
 
@@ -442,6 +441,33 @@ behind an opt-in env var:
 - Opt-in live check (env-var gated, not run by default in CI): fetch both `$schema` URLs at `agent-plugins.org`
   and confirm 200 — presence/reachability only, not a full JSON Schema validation; print a skip notice when the
   env var is unset so a green run is never mistaken for a live-schema proof.
+
+## Part 7b — OpenAI submission: read this first (resplendenttea.com, 2026-11-02)
+
+Two misses this run, both avoidable, both found only because the portal or a reviewer's eye caught them:
+
+1. **Test cases live in the ZIP, not the form.** `extensions["com.openai"].review.test_cases` = `{positive: [5], negative: [3]}`, a sibling of `interface`. Positive fields: `description`, `prompt`, `tools_triggered` (string), `expected_behavior`. Negative fields: `description`, `prompt`. Note the names differ from Part 7's old manifest (`user_prompt`, `expected_output`, and top-level `negative_test_cases`). Imported cases are read-only in the portal. A ZIP without them shows "No test cases provided" and costs a version bump. `demo_recording_url`, `commerce` and `commerce_description` also belong under `review`; `test_credentials` and `reviewer_instructions` are rejected in the ZIP. Source: `developers.openai.com/plugins/deploy/submission`.
+2. **A plain prompt does not prove the connector answered.** With the plugin merely added, ChatGPT used web search on some prompts while the answer still looked right. A connector test only counts with `@<name>` in the same message, and even then check the work details. Test results written from plain prompts must not be reported as passes.
+
+**Before writing any submission SOP:**
+- Read the current `plugins/deploy/submission` page for every field, and open the portal draft if one exists. Do not carry steps over from an older run. Say in the SOP which steps were not seen live.
+- Build the ZIP with the cases already in it; add a test for 5 + 3, non-empty fields and tools that exist on the route.
+- Use one set of prompts everywhere: `plugin.json`, the video and the SOP, word for word.
+- Short description: 30 characters at most (`submission_subtitle_too_long`). Check the packet against the manifest.
+
+**The demo video:**
+- It must show all 5 + 3 cases, with the same prompts as the ZIP.
+- Give the person a single block showing the keystrokes. "Type @name, press Return" was read as sending the mention alone, which produces a "Welcome" reply before each prompt. Usable, but noisy.
+- Free-plan accounts show ads and third-party picture credits under answers, more often on no-tool answers. They cannot be turned off. Trim up to the frame before the ad (it appears about a second after the answer ends), hold that frame, and say so in the description. If you cover one, disclose that too.
+- The recording's frame rate varies. Cut with `fps=30` first or per-segment encodes; `setpts=N/FRAME_RATE/TB` alone plays it too fast. Find tab switches by luminance (`signalstats`). This ffmpeg has no `drawtext` or `subtitles` filter, so deliver captions as an SRT.
+- YouTube ignores all chapters if any is under 10 s. A signed-out page read gives `isUnlisted`; check it after upload. Give the exact local path for every file the person has to pick.
+- Captions state only what the frame shows: no tool names or tool counts unless visible.
+
+**Order and gates:**
+- The form's "Supporting content" can show complete with an older demo link, and it cannot be read once in review. Confirm the link before Submit.
+- The Blocking filter on Findings is the real test: "We couldn't confirm the selected category" with `Other` is informational and does not block.
+- Tell the person plainly what must happen before Submit, and put it on their panel when Submit first lights up: it was pressed before the client's written OK and the final review.
+- Client's written OK for the listing is needed before Submit: both portals attest brand rights.
 
 ## Part 8 — Submit to the Claude / Anthropic connector directory
 
@@ -618,7 +644,7 @@ better) · pin the SDK · all-three tool annotations matching the manifest · re
 throttle, fail closed without it · verify stateless flow live, on the PR preview before merge · static
 no-redirect home w/ purpose above the fold (OAuth) · `/terms` + `/privacy` with **named recipients and real
 retention durations** · `$schema`=apps-sdk URL · justifications snake_case, annotations camelCase ·
-**exactly** 5 + 3 test cases · `tools_triggered` is a **string** · replace every `example.com` default ·
+**exactly** 5 + 3 test cases **in the ZIP** under `review.test_cases` · test with `@name` in the same message · `tools_triggered` is a **string** · replace every `example.com` default ·
 domain token via middleware, set var → **redeploy** → byte-compare → then Verify · silent demo recorded via
 live connector · business=Entity verification · booking=lead not commerce · re-probe before believing a
 post-deploy failure · **no `secret`/credential-shaped tool args** · constrain free-text fields + reject
