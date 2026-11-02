@@ -461,6 +461,7 @@ Two misses this run, both avoidable, both found only because the portal or a rev
 - Free-plan accounts show ads and third-party picture credits under answers, more often on no-tool answers. They cannot be turned off. Trim up to the frame before the ad (it appears about a second after the answer ends), hold that frame, and say so in the description. If you cover one, disclose that too.
 - The recording's frame rate varies. Cut with `fps=30` first or per-segment encodes; `setpts=N/FRAME_RATE/TB` alone plays it too fast. Find tab switches by luminance (`signalstats`). This ffmpeg has no `drawtext` or `subtitles` filter, so deliver captions as an SRT.
 - YouTube ignores all chapters if any is under 10 s. A signed-out page read gives `isUnlisted`; check it after upload. Give the exact local path for every file the person has to pick.
+- Review a demo at one frame per second at legible size before calling it clean. Sampling every 2-5 s missed another client's file name in the `@` picker, an ad and web-search labels (2026-11-02). A fixed mask does not follow a scroll. Keep the `@` picker off screen: it lists files and other connectors.
 - Captions state only what the frame shows: no tool names or tool counts unless visible.
 
 **Order and gates:**
