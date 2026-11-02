@@ -410,12 +410,7 @@ least once and restate the trust invariant (request, never confirm) for any writ
      portal was still serving round 3's cached scan. Pressing Rescan re-read the live server and the issue
      vanished with no code change. Treat "the issue came back" as "did I rescan?" before treating it as a
      regression.
-6. Complete **Review information** — **this form is NOT prefilled from the package.** Unlike Part 7's
-   `chatgpt-app-submission.json` (which carried `test_cases`/`negative_test_cases` straight into the
-   portal), the Agent Plugins format has no manifest field for them: type in each test case by hand
-   (portal fields: Scenario / User prompt / Tool triggered / Expected output), plus negative cases. Verify
-   every `expected_output` against the LIVE server (`tools/call`, not source) before typing it in, and keep
-   a copy-paste block of all cases in the client-repo SOP so re-submission doesn't re-derive them.
+6. Complete **Review information**. **Corrected 2026-11-02:** test cases come from the ZIP (`extensions["com.openai"].review.test_cases`, see Part 7b) and are read-only in the form; an older version of this step said to type them by hand, which the portal now refuses. Verify every `expected_behavior` against the LIVE server (`tools/call`, not source) before building the ZIP.
 7. Select the draft → **Submit for review** → confirm policy attestations.
 8. Track the decision by email; **Publish** once approved.
 
