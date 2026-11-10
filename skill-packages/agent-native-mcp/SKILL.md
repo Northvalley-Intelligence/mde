@@ -30,7 +30,10 @@ metadata:
     resplendenttea.com's OpenAI submission 2026-11-02 (test cases live in the ZIP, demo must use @mention,
     read-this-first list) is Part 7b; it was SUBMITTED ~02:15 ET and APPROVED 14:13 ET the same day (first pass,
     mail "ChatGPT Plugin Submission Approved") and PUBLISHED by the owner that evening; 2026-11-08 gap review
-    folded the approval/publish record, the live ChatGPT path and video rules in (Parts 4, 7a, 7b, 7c, 8, 9)
+    folded the approval/publish record, the live ChatGPT path and video rules in (Parts 4, 7a, 7b, 7c, 8, 9);
+    2026-11-09 — Smart Cash Sheet (OAuth) submitted 2026-11-08 ~23:31, APPROVED 2026-11-09 15:45 (mail), PUBLISHED by the
+    owner 2026-11-09 evening: first OAuth-protected plugin through review; screenshots-key, plan-wording, Shorts-link
+    and consent-card lessons and the live-listing check folded into Parts 7a, 7c and 9 (board H212)
 ---
 
 # Agent-Native MCP
@@ -393,7 +396,8 @@ folder containing them: every path inside the manifests is `./`-relative to that
   error. Under `.interface`: `displayName`, `shortDescription`, `longDescription`, `developerName`, `category`,
   `capabilities` (e.g. `["Read","Write"]`), `websiteURL`, `privacyPolicyURL`, `termsOfServiceURL`,
   `defaultPrompt` (array of starter prompts), `brandColor`, `composerIcon`, `logo` (both `./`-relative into
-  `assets/`), `screenshots` (array, may be empty).
+  `assets/`). **Omit `interface.screenshots` entirely**: the portal rejects the key even when it is an empty array
+  ("Remove interface.screenshots from the plugin manifest", smartcashsheet L3 2026-11-08 23:06).
 - Keep `plugin.json`, `mcp.json`, and `skills/` at the plugin root; every path under `extensions.com.openai` is
   relative to that root and starts with `./`.
 
@@ -445,10 +449,19 @@ least once and restate the trust invariant (request, never confirm) for any writ
    the owner opens the approved version on platform.openai.com/plugins and presses **Publish plugin** (live docs
    §8; owner-only). After the press: read the portal state (Published), find the public listing, verify it
    against `tools/list` (Horizon L3 2026-10-17 00:05), record its URL on the stream, and **update this skill the
-   same day**. Resplendent Tea was approved 14:13 and published that evening, but as of 2026-11-08 the stream still
+   same day**. Smart Cash Sheet (OAuth): submitted 2026-11-08 ~23:31, APPROVED 2026-11-09 15:45 (mail), PUBLISHED by
+   the owner 2026-11-09 evening (~16 h review). Resplendent Tea was approved 14:13 and published that evening, but as of 2026-11-08 the stream still
    said "Both listings In review" and nobody had read the live listing (RT L2 2026-11-02 21:10: "Publication is his
    report; main has not yet seen the live listing") — do not repeat that. The skill is updated on the day of each
    decision mail (approval or rejection) and again on publish, not only at submit.
+   **Verify the live listing (proven 2026-11-09):** the public URL is
+   `https://chatgpt.com/plugins/plugin_<asdk_app id from the approval mail subject>`, e.g. Horizon
+   https://chatgpt.com/plugins/plugin_asdk_app_6abdb87fa1f48191afe475cb62fa2a4a and Smart Cash Sheet
+   https://chatgpt.com/plugins/plugin_asdk_app_6ae756cc38e0819186b02ec9bb5e6e47. The page is JavaScript-rendered and
+   Cloudflare-challenged: curl returns only a shell and headless Chrome gets "Just a moment...". Read it in a real
+   browser (title "<name> | ChatGPT Plugins"; check the developer name, the short description and the starter
+   prompts), or via a web search hit. After publish, announce it with the northvalley-social-post skill (owner
+   approval and client consent first).
 9. **After publication** (docs, 2026-10-28): OpenAI rescans the live MCP server **daily**; changed tool
    metadata is evaluated per tool and *held* if flagged (the previously approved definition stays live),
    new tools stay unavailable until approved, removals take effect after a scan. Metadata/skills changes
@@ -479,7 +492,7 @@ attachments/horizon-codex-plugin-2026-09-30-r5.zip`, unzipped and diffed against
   `extensions["com.openai"].interface` with `displayName`, `shortDescription` (≤30), `longDescription`
   (purpose sentence first), `developerName` Northvalley Intelligence, `category` **Other**, `capabilities`
   `["Read","Write"]`, the four URLs (`websiteURL`, `supportURL` = the client's `/contact`, `privacyPolicyURL`,
-  `termsOfServiceURL`), exactly 3 `defaultPrompt`s, `brandColor`, `composerIcon`, `logo`, `screenshots: []`.
+  `termsOfServiceURL`), exactly 3 `defaultPrompt`s, `brandColor`, `composerIcon`, `logo`. No `screenshots` key at all (the portal rejects it, even empty).
   No `review`/`publication` block (test cases typed by hand).
 - `mcp.json`: one `streamable-http` server keyed by the plugin `name`, URL `https://www.<domain>/mcp`, **no
   auth block** (auth None chosen on the MCPs tab).
@@ -505,8 +518,8 @@ behind an opt-in env var:
 - `plugin.json`: `$schema` literal match; `name` kebab-case and equal to the live server's name; `version`
   matches semver; `description` non-empty; `extensions["com.openai"].interface` carries every required field
   non-empty; `websiteURL`/`privacyPolicyURL`/`termsOfServiceURL` equal the live site's own URLs (`/privacy`,
-  `/terms`) — not hand-typed copies that can drift; `composerIcon`/`logo`/each `screenshots` entry resolve to a
-  real file under `assets/`.
+  `/terms`) — not hand-typed copies that can drift; `composerIcon`/`logo` resolve to a
+  real file under `assets/`; `interface.screenshots` is absent.
 - `mcp.json`: `$schema` literal match; exactly one `streamable-http` server; its `url` equals the live `/mcp`
   endpoint; its key equals `plugin.json`'s `name`.
 - `skills/<name>/SKILL.md`: file exists; frontmatter has `name` + non-empty `description`; body mentions every
@@ -576,10 +589,11 @@ Submit. None of this is a licence: keep the rules above. It is the floor the fir
 Written 2026-10-28 for smartcashsheet (the first Northvalley submission with auth ≠ none), from first-hand
 reads of `developers.openai.com/plugins/deploy/submission.md`, `/plugins/build/plugins.md` ("Configure MCP
 authentication"), `/plugins/deploy/submission-errors.md`, `/plugins/plugin-guidelines.md`, plus the live
-smartcashsheet production server. **Not yet proven through the portal** — as of 2026-11-08 nobody has pressed the portal's Connect under OAuth
-(smartcashsheet Connect/Rescan/Submit not pressed); treat portal behaviour below as UNVERIFIED until a
-submission has gone through; record each round's real messages here. Part 7b (Resplendent Tea, auth none) is
-the proven portal flow.
+smartcashsheet production server. **Proven through the portal for smartcashsheet (2026-11-08/09):** the OAuth Connect in the portal was completed
+(smartcashsheet L3 2026-11-08 23:25: MCPs tab "Authorized, Domain verified", exactly the 8 expected tools, no MCP
+findings), the plugin was submitted 2026-11-08 ~23:31, APPROVED 2026-11-09 15:45 (mail) and PUBLISHED by the owner
+the evening of 2026-11-09 — the first OAuth-protected Northvalley plugin through review. Portal behaviour below
+that the stream did not record first-hand stays UNVERIFIED; record each round's real messages here.
 
 **Auth is declared in `mcp.json`, not typed into the portal.** The MCPs tab "reads advanced authentication
 settings from your package's `mcp.json`" and "doesn't provide an advanced OAuth settings editor". Put it on the
@@ -665,6 +679,14 @@ redirects are a risk for POST clients; give the portal the `www` URL).
     before a test or a recording and name the one to use by its status label: a "staging" plugin in the owner's
     ChatGPT answered the first production test prompt with sandbox data (SCS L3 2026-11-08 21:25).
 12. **Video:** the consent card shows the reviewer e-mail, so the video is Unlisted for good (see Part 7b).
+13. **Description wording:** the portal flags plan or plan-gating wording in the description as pricing ("Remove
+    pricing, subscription offers, and temporary promotions from the description"; SCS L3 2026-11-08 23:11, fixed
+    by deleting the "requires an account on a plan that includes…" sentence in 1.0.2). Say nothing about plans there.
+14. **Portrait recordings:** a portrait screen recording uploaded to YouTube becomes a Short; give the reviewer the
+    `https://www.youtube.com/watch?v=<id>` link, not a `shorts/` link (SCS L2 2026-11-08 23:31).
+15. **Consent card in the demo:** a consent card is recorded only on a first grant; once the reviewer/account has
+    consented, the OAuth flow redirects straight through and no card appears (SCS L3 2026-11-08 22:30). Plan the
+    video accordingly (a missing card is low risk; the reviewer sees the live one).
 
 
 ## Part 8 — Submit to the Claude / Anthropic connector directory
@@ -676,7 +698,8 @@ redirects are a risk for POST clients; give the portal the `www` URL).
 - Requirements: tool `title` + `readOnlyHint`/`destructiveHint` on every tool; **no-auth is an allowed**
   connection type; public privacy policy (incomplete = instant reject); a reviewer test account/instructions
   (for a public no-auth connector, none needed — but note a write tool will send real notifications during
-  review); MCP Apps (interactive UI) also need 3–5 PNG screenshots.
+  review); MCP Apps (interactive UI) also need 3–5 PNG screenshots (this is the Claude directory's own submission field, not
+  the OpenAI plugin manifest's `interface.screenshots`, which must be omitted).
 - Portal steps: Info → Connection → Tools (auto-sync; fix missing annotations on the server first) → Listing
   (name ≤100, tagline ≤55, description ≤2000, categories, docs URL, privacy URL, support, icon, permanent
   slug) → Use cases → Company → Authentication (None) → Data handling → Test & launch → Compliance (7
@@ -689,7 +712,7 @@ redirects are a risk for POST clients; give the portal the `www` URL).
 
 ---
 
-## Part 9 — Passing the directory REVIEW (rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com SUBMITTED 2026-09-30 → APPROVED 2026-10-15, 15 days; resplendenttea.com SUBMITTED 2026-11-02 ~02:15 ET → APPROVED 14:13 ET the same day, first pass → PUBLISHED by the owner that evening)
+## Part 9 — Passing the directory REVIEW (rejections 2026-08-22 and 2026-09-19; horizonpetwastesolutions.com SUBMITTED 2026-09-30 → APPROVED 2026-10-15, 15 days; resplendenttea.com SUBMITTED 2026-11-02 ~02:15 ET → APPROVED 14:13 ET the same day, first pass → PUBLISHED by the owner that evening; Smart Cash Sheet (OAuth) SUBMITTED 2026-11-08 ~23:31 → APPROVED 2026-11-09 15:45 → PUBLISHED by the owner 2026-11-09 evening)
 
 Review time has ranged from 12 hours to 15 days on identical process; never promise a date, and never read
 silence under 15 days as a problem. (Evidence: RT L1 2026-11-02 14:32, the forwarded mail dated Nov 2, 2026 2:13 PM,
